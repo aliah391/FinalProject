@@ -1,52 +1,70 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:orientation="vertical"
+    android:padding="16dp">
 
-    <Button
-        android:id="@+id/Aviation"
+    <EditText
+        android:id="@+id/editText_amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter amount..."
+        android:inputType="numberDecimal"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:id="@+id/textView_from_currency_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
-        android:text="Aviation Button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Source Currency:"
+        android:layout_marginBottom="8dp" />
 
-    <Button
-        android:id="@+id/Currency"
+    <Spinner
+        android:id="@+id/spinner_from_currency"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:id="@+id/textView_to_currency_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
-        android:text="Currency Button"
-        app:layout_constraintEnd_toEndOf="@+id/Aviation"
-        app:layout_constraintStart_toStartOf="@+id/Aviation"
-        app:layout_constraintTop_toBottomOf="@+id/Aviation" />
+        android:text="Destination Currency:"
+        android:layout_marginBottom="8dp" />
+
+    <Spinner
+        android:id="@+id/spinner_to_currency"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp" />
 
     <Button
-        android:id="@+id/Trivia"
-        android:layout_width="wrap_content"
+        android:id="@+id/button_convert"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
-        android:text="Trivia Button"
-        app:layout_constraintEnd_toEndOf="@+id/Currency"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/Currency"
-        app:layout_constraintTop_toBottomOf="@+id/Currency" />
+        android:text="Convert"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:id="@+id/textView_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Result"
+        tools:text="Result: "
+        android:layout_marginBottom="16dp" />
 
     <Button
-        android:id="@+id/Bear_Image"
-        android:layout_width="wrap_content"
+        android:id="@+id/button_save"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
-        android:layout_marginBottom="84dp"
-        android:text="Bear Image Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/Trivia"
-        app:layout_constraintStart_toStartOf="@+id/Trivia"
-        app:layout_constraintTop_toBottomOf="@+id/Trivia"
-        app:layout_constraintVertical_bias="0.417" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:text="Save Conversion"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/button_view_saved"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="View Saved Conversions" />
+
+</LinearLayout>

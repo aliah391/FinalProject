@@ -1,3 +1,59 @@
 <resources>
-    <string name="app_name">FinalProject</string>
+    <string name="app_name">Currency Converter</string>
+
+    <!-- Conversion Activity -->
+    <string name="hint_amount">Enter amount...</string>
+    <string name="hint_source_currency">Select source currency...</string>
+    <string name="hint_destination_currency">Select destination currency...</string>
+    <string name="button_convert">Convert</string>
+    <string name="result_text">Result: </string>
+    <string name="button_save_conversion">Save Conversion</string>
+    <string name="button_view_saved">View Saved Conversions</string>
+
+    <!-- Saved Conversions Activity -->
+    <string name="title_saved_conversions">Saved Conversions</string>
+    <string name="button_remove_query">Remove Query</string>
+    <string name="snackbar_query_removed">Query removed!</string>
+    <string name="snackbar_undo_removal">Undo</string>
+
+    <!-- Toast Message -->
+    <string name="toast_conversion_saved">Conversion saved successfully!</string>
+
+    <!-- AlertDialog Messages -->
+    <string name="alertdialog_exit_title">Exit Application?</string>
+    <string name="alertdialog_exit_positive_button">Yes</string>
+    <string name="alertdialog_exit_negative_button">No</string>
+
+    <!-- Error Messages -->
+    <string name="error_server">Server error, please try again later.</string>
+    <string name="error_invalid_input">Invalid input. Please check your entries.</string>
+
+    <!-- Currencies -->
+    <string-array name="currency_array">
+        <item>Canadian dollar</item>
+        <item>Chinese renminbi</item>
+        <item>European euro</item>
+        <item>Hong Kong dollar</item>
+        <item>Indian rupee</item>
+        <item>Indonesian rupiah</item>
+        <item>Japanese yen</item>
+        <item>Malaysian ringgit</item>
+        <item>Mexican peso</item>
+        <item>New Zealand dollar</item>
+        <item>Norwegian kron</item>
+        <item>Peruvian new sol</item>
+        <item>Russian ruble</item>
+        <item>Saudi riyal </item>
+        <item>Singapore dollar</item>
+        <item>South African rand</item>
+        <item>South Korean won</item>
+        <item>Swedish krona</item>
+        <item>Swiss franc </item>
+        <item>Taiwanese dollar</item>
+        <item>Thai baht</item>
+        <item>Turkish lira</item>
+        <item>UK pound sterling </item>
+        <item>US dollar</item>
+        <item>Vietnamese dong</item>
+    </string-array>
 </resources>
