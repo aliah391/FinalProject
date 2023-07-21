@@ -25,4 +25,5 @@ public class MainActivity extends AppCompatActivity {
             // Save the selected topic and number of questions in SharedPreferences
             // Start the quiz activity with the selected topic and number of questions
         }
+
     }
