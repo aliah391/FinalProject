@@ -9,10 +9,9 @@ android {
     buildFeatures{
         viewBinding true
     }
-
     defaultConfig {
-        applicationId "algonquin.cst2335.finalproject"
-        minSdk 27
+        applicationId 'algonquin.cst2335.finalproject'
+        minSdk 22
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -44,7 +43,6 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
 }
-
 
 
 
