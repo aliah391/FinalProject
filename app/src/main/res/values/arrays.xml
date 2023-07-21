@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="topic_options">
+        <item>General Knowledge</item>
+        <item>Science</item>
+        <item>History</item>
+        <item>Sports</item>
+        <!-- Add more topics here -->
+    </array>
+</resources>

@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">FinalProject</string>
+    <string name="select_a_topic">Select quiz topic</string>
+    <string name="select_topic_prompt">"topic "</string>
+    <string name="select_the_number_of_questions">Number of question</string>
+    <string name="enter_the_number_of_questions">Questions</string>
+    <string name="start_quiz">quiz</string>
+    <string name="question">Question</string>
+    <string name="top_10_high_scores">High Score</string>
 </resources>
