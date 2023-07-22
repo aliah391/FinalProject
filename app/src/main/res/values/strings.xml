@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">FinalProject</string>
+    <string name="app_name">My Application</string>
+    <string name="describe_image_here">Description of the image</string>
+    <string name="save">Save Image</string>
 </resources>
