@@ -1,8 +1,11 @@
 package algonquin.cst2335.finalproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -11,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,132 +32,188 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import algonquin.cst2335.finalproject.databinding.AviationBinding;
-import algonquin.cst2335.finalproject.databinding.NameOfFlightBinding;
+//import algonquin.cst2335.finalproject.databinding.NameOfFlightBinding;
 
 
 public class Aviation extends AppCompatActivity {
     AviationBinding binding;
-    FlightDetails fDAO;
-    FlightDatabase fd;
+    FlightDetails fdetails;
+    FlightDatabase fdata;
     private String airportCode;
+    AviationViewModel aviationModel;
     private RequestQueue queue = null;
 
+    private RecyclerView.Adapter myAdapter;
+    private ArrayList<FlightDetails> detailsTemp = new ArrayList<>();
 
-    private ArrayList<String> detailsTemp = new ArrayList<>();
-   // private ArrayList<FlightDetails> details = new ArrayList<>();
+    // private ArrayList<FlightDetails> details = new ArrayList<>();
+    public Aviation() {
+    }
+
     @Override
-    protected void onCreate( Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         queue = Volley.newRequestQueue(this);
 
+        aviationModel = new ViewModelProvider(this).get(AviationViewModel.class);
+
+        detailsTemp = aviationModel.details.getValue();
+        if (detailsTemp == null) {
+            aviationModel.details.postValue(detailsTemp = new ArrayList<FlightDetails>());
+
+        }
+
         binding = AviationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        String defaultValue;
+        setSupportActionBar(binding.toolbar2);
 //        fd = Room.databaseBuilder(getApplicationContext(), FlightDatabase.class, "database-name").build();
 //         fDAO= fd.flightDAO();
 
+//        SharedPreferences prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
+//        SharedPreferences.Editor editor = prefs.edit();
+//        editor.putString("",airportCode);
+//        editor.apply();
+        binding.button.setOnClickListener(blk -> {
+            airportCode = (binding.airportCode.getText().toString());
+            binding.airportCode.setText("");
+            String message = "Flights are loading";
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
 
-        binding.button.setOnClickListener(blk ->{
-          airportCode = (binding.airportCode.getText().toString());
+//            prefs.getString(airportCode, "");
 
-            String stringURL = "http://api.aviationstack.com/v1/flights?access_key=d88afd4e913c4d7e46737a949c4c94ec&dep_iata="+ URLEncoder.encode(airportCode);
+
+            String stringURL = "http://api.aviationstack.com/v1/flights?access_key=d88afd4e913c4d7e46737a949c4c94ec&dep_iata=" + URLEncoder.encode(airportCode);
 
 
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, stringURL, null,
-            (reponse)->{
-                try {
+                    (response) -> {
+                        try {
 
-                    JSONArray dataArray = reponse.getJSONArray("data");
-                    JSONObject position = dataArray.getJSONObject(0);
-                    JSONObject airlineInfo = position.getJSONObject("airline");
-                    String flightName = airlineInfo.getString("name");
+                            JSONArray dataArray = response.getJSONArray("data");
+                            // int lengthOfArray = dataArray.getInt(-1);
 
-                    JSONObject destination = position.getJSONObject("arrival");
-                    String arrival =  destination.getString("airport");
-                    String arrivalTerminal = destination.getString("terminal");
-                    String arrivalGate = destination.getString("gate");
-                    String arrivalDelay = destination.getString("delay");
-                    SharedPreferences prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
-                    //prefs.getString("flight" ,String defaultValue);
-                    String arrivalInfo = prefs.getString("airport","");
-                    SharedPreferences.Editor editor = prefs.edit();
-                    editor.apply();
+                            for (int i = 0; i < dataArray.length(); i++) {
+                                JSONObject position = dataArray.getJSONObject(i);
+                                JSONObject airlineInfo = position.getJSONObject("airline");
+                                String flightName = airlineInfo.getString("name");
+
+//                        JSONObject destination = position.getJSONObject("arrival");
+//                        String arrival =  destination.getString("airport");
+//                        String arrivalTerminal = destination.getString("terminal");
+//                        String arrivalGate = destination.getString("gate");
+//                        String arrivalDelay = destination.getString("delay");
+                                FlightDetails fName = new FlightDetails(flightName, true);
+                                detailsTemp.add(fName);
+                                myAdapter.notifyItemInserted(detailsTemp.size() - 1);
+
+                            }
+                            myAdapter.notifyDataSetChanged();
 
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            },
-                    (error)-> {}    );
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    },
+                    (error) -> {
+                        int i = 0;
+                    });
             queue.add(request);
-            //retreive a list of flights
-            FlightDetails fdetails = new FlightDetails();
-            detailsTemp.add(airportCode);
-
 
 
         });
+
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        binding.recyclerView.setAdapter(new RecyclerView.Adapter<MyFlightHolder>() {
+        binding.recyclerView.setAdapter(myAdapter = new RecyclerView.Adapter<MyFlightHolder>() {
             @NonNull
             @Override
             public MyFlightHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                NameOfFlightBinding binding = NameOfFlightBinding.inflate(getLayoutInflater());
+                AviationBinding binding = AviationBinding.inflate(getLayoutInflater());
                 return new MyFlightHolder(binding.getRoot());
             }
 
             @Override
             public void onBindViewHolder(@NonNull MyFlightHolder holder, int position) {
-                holder.nameOfFlight.setText("");
-                String obj = detailsTemp.get(position);
-                holder.nameOfFlight.setText(obj);
+                // holder.FlightText.setText("");
+                FlightDetails fDetail = detailsTemp.get(position);
+                // String obj = detailsTemp.get(position);
+                //  holder.FlightText.setText(fDetail.getFlightName());
             }
 
             @Override
             public int getItemCount() {
                 return detailsTemp.size();
+                //return detailsTemp.size();
             }
 
             @Override
             public int getItemViewType(int position) {
-                return 0;
+                if (detailsTemp.get(position).airportCodeButton) {
+                    return 0;
+                } else {
+                    return 1;
+                }
+
             }
         });
 
 
-
-
+    }
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.my_menu, menu);
+        return true;
     }
 
-    class MyFlightHolder extends RecyclerView.ViewHolder{
-        int position= getAbsoluteAdapterPosition();
-        TextView nameOfFlight;
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.help) {
+            AlertDialog.Builder builder = new AlertDialog.Builder((Aviation.this));
+            builder.setMessage("The application allows you to view the flight that are departing from an airport and view, save and delete selected information");
+            builder.setTitle("Help using the Aviation Application");
+            builder.setPositiveButton("I understand", (dialog, click) -> {});
+            builder.setNegativeButton("I don't understand", (dialog, click) -> {
+                builder.setMessage("Steps to using this application\n1. Enter an airportCode to view all departing flights\n" +
+                        "2. Click the search button\n3. A list of flights will be displayed, select the flight you would like to view\n" +
+                        "4. The flight details will be displayed. If you would like to save the flight information click the 'Save details' button\n" +
+                        "If you would like to view the flights that have been saved, click the 'View Saved Flight Details' icon\n" +
+                        "5. If you would like to delete the flight details from the flights you have saved, click the flight and confirm delete");
+            });
+        }return true;
+    }
+
+    class MyFlightHolder extends RecyclerView.ViewHolder {
+        //int position= getAbsoluteAdapterPosition();
+        ArrayList<FlightDetails> detailsTemp;
+
+        RecyclerView FlightText;
+
         public MyFlightHolder(@NonNull View itemView) {
             super(itemView);
 
-            nameOfFlight = itemView.findViewById(R.id.nameOfFlight);
-            itemView.setOnClickListener(clk ->{
-                Snackbar.make(nameOfFlight, position, Snackbar.LENGTH_LONG).show();
+            FlightText = itemView.findViewById(R.id.recyclerView);
+            itemView.setOnClickListener(clk -> {
+                AlertDialog.Builder builder = new AlertDialog.Builder((Aviation.this));
+                builder.setMessage("Do you want to see the flight details on "); // add in the name of the ffflight details
+                builder.setTitle("Verification");
+                builder.setNegativeButton("no", (dialog, which) -> {
 
-               // String messag= "I am a toast";
+                });
+                builder.setPositiveButton("yes", (dialog, which) -> {
+                    /*
+                    arrayname flightdetails = detailsTemp.get(position);
+                    intent new page
+                    link all the details to the new page
+                     */
+                });
 
-              //  Toast.makeText(this, messag, Toast.LENGTH_SHORT).show();
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(Aviation.this);
-            builder.setMessage("Are you sure you wwant to delete"+ nameOfFlight.getText());
-            builder.setTitle("Flight to be deleted");
-            builder.setPositiveButton("Yes", (dialog, cl)->{});
-            builder.setNegativeButton("no", (dialog, cl) ->{});
-
-        });
-            nameOfFlight=itemView.findViewById((R.id.nameOfFlight));
+            });
+            // nameOfFlight=itemView.findViewById((R.id.nameOfFlight));
         }
 
 
     }
-
-
 
 
 }

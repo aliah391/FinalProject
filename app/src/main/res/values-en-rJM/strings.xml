@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FinalProject</string>
+    <string name="aviationbtn">Plane Buttn</string>
+    <string name="ediText">Enta di name a di airport</string>
+    <string name="name_of_flight">plane name</string>
+    <string name="destination">Wei di plane a guh</string>
+    <string name="delay">How long di plane late by</string>
+    <string name="Terminal">Wei dem fi leff yuh</string>
+    <string name="gate">wei yah guh inside</string>
+</resources>
