@@ -1,10 +1,14 @@
 package algonquin.cst2335.finalproject;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,10 +21,37 @@ public class NewActivity extends AppCompatActivity {
     private EditText widthEditText;
     private EditText heightEditText;
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_help) {
+            displayHelpDialog();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void displayHelpDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.help_title)
+                .setMessage(R.string.help_message_new_activity)
+                .setPositiveButton(android.R.string.ok, null)
+                .show();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new);
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
 // Link the UI elements
         widthEditText = findViewById(R.id.widthEditText);
         heightEditText = findViewById(R.id.heightEditText);
@@ -45,7 +76,7 @@ public class NewActivity extends AppCompatActivity {
                 String heightString = heightEditText.getText().toString();
 
                 if (widthString.isEmpty() || heightString.isEmpty()) {
-                    Toast.makeText(NewActivity.this, "Please enter width and height", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(NewActivity.this, getString(R.string.toast_message_1), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -53,7 +84,7 @@ public class NewActivity extends AppCompatActivity {
                 int height = Integer.parseInt(heightString);
 
                 if (width <= 0 || height <= 0) {
-                    Toast.makeText(NewActivity.this, "Width and height must be positive numbers", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(NewActivity.this, getString(R.string.toast_message_2), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -64,7 +95,7 @@ public class NewActivity extends AppCompatActivity {
                 editor.apply();
 
                 // Show Toast and Snackbar
-                Toast.makeText(NewActivity.this, "Image is being generated...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(NewActivity.this, getString(R.string.toast_message_3), Toast.LENGTH_SHORT).show();
                 Snackbar.make(v, "Image is being generated...", Snackbar.LENGTH_LONG).show();
 
                 // Start new ImageActivity
@@ -80,7 +111,7 @@ public class NewActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Show Toast and Snackbar
-                Toast.makeText(NewActivity.this, "Opening saved images...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(NewActivity.this, getString(R.string.toast_message_4), Toast.LENGTH_SHORT).show();
                 Snackbar.make(v, "Opening saved images...", Snackbar.LENGTH_LONG).show();
 
 

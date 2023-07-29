@@ -2,4 +2,31 @@
     <string name="app_name">My Application</string>
     <string name="describe_image_here">Description of the image</string>
     <string name="save">Save Image</string>
+    <string name="bear_image_button">Bear Image Button</string>
+    <string name="enter_width">Enter Width</string>
+    <string name="enter_height">Enter Height</string>
+    <string name="generate_image">Generate Image</string>
+    <string name="show_saved_images">Show Saved Images</string>
+    <string name="toast_message_1">Please enter width and height</string>
+    <string name="toast_message_2">Width and height must be positive numbers</string>
+    <string name="toast_message_3">Image is being generated...</string>
+    <string name="toast_message_4">Opening saved images...</string>
+    <string name="toast_message_5">Saved images loaded</string>
+    <string name="dialog_title">Delete image?</string>
+    <string name="dialog_message">Do you want to delete this image?</string>
+    <string name="dialog_positive">Yes</string>
+    <string name="dialog_negative">No</string>
+    <string name="snackbar_message">Image deleted successfully</string>
+    <string name="dialog_message_1">Do you want to save this image?</string>
+    <string name="snackbar_message_1">Image saved successfully</string>
+    <string name="snackbar_saved_images_loaded">Saved images loaded</string>
+    <string name="snackbar_message_2">Failed to load image</string>
+
+    <string name="action_help">Help</string>
+    <string name="help_title">Help</string>
+    <string name="help_message_image_activity">This is ImageActivity. Here you can view and save images with specified dimensions.</string>
+
+    <string name="help_message_new_activity">This is NewActivity. Here you can specify the dimensions of the image to generate.</string>
+
+    <string name="help_message_saved_images_activity">This is SavedImagesActivity. Here you can view and delete your saved images.</string>
 </resources>
