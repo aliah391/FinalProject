@@ -30,6 +30,8 @@
     <string name="query">Query</string>
     <string name="results">Results</string>
     <string name="converted_amount">Converted Amount %1$.2f</string>
+    <string name="action_help">Help</string>
+
 
 
     <!-- Currencies -->

@@ -5,13 +5,23 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
+
+
     <EditText
         android:id="@+id/editText_amount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/enter_amount"
         android:inputType="numberDecimal"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="16dp"/>
 
     <TextView
         android:id="@+id/textView_from_currency_label"

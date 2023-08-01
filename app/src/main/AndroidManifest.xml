@@ -25,6 +25,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".CurrencyConverter" />  <!-- Declare CurrencyConverter activity here -->
+        <activity android:name=".SavedConversionsActivity"/>
     </application>
 
 </manifest>

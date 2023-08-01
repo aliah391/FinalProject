@@ -17,4 +17,5 @@ public interface ConversionQueryDao {
 
     @Delete
     void delete(ConversionQuery query);
+
 }

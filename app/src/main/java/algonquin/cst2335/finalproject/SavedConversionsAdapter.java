@@ -4,10 +4,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.Locale;
 
 public class SavedConversionsAdapter extends ListAdapter<ConversionQuery, SavedConversionsAdapter.ViewHolder> {
@@ -49,7 +51,7 @@ public class SavedConversionsAdapter extends ListAdapter<ConversionQuery, SavedC
         holder.textView.setText(text);
     }
 
-    public ConversionQuery getQueryAt(int position) {
+    public ConversionQuery getConversionAt(int position) {
         return getItem(position);
     }
 
@@ -58,7 +60,7 @@ public class SavedConversionsAdapter extends ListAdapter<ConversionQuery, SavedC
     }
 
     public interface OnItemClickListener {
-        void onItemClick(ConversionQuery query);
+        void onItemClick(int position);
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -71,10 +73,12 @@ public class SavedConversionsAdapter extends ListAdapter<ConversionQuery, SavedC
             itemView.setOnClickListener(v -> {
                 int position = getBindingAdapterPosition();
                 if (listener != null && position != RecyclerView.NO_POSITION) {
-                    listener.onItemClick(getItem(position));
+                    listener.onItemClick(position);
                 }
             });
         }
     }
 }
+
+
 

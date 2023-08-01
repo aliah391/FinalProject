@@ -4,6 +4,9 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -11,8 +14,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -53,7 +57,13 @@ public class CurrencyConverter extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityCurrencyConverterBinding binding = ActivityCurrencyConverterBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        setContentView(R.layout.activity_currency_converter); // replace with your layout
+
+        Toolbar toolbar = findViewById(R.id.my_toolbar);
+        setSupportActionBar(toolbar);
+
+        // If you want to display the title
+        getSupportActionBar().setTitle("Currency Converter");
 
         queryViewModel = new ViewModelProvider(this).get(ConversionQueryViewModel.class);
 
@@ -98,13 +108,6 @@ public class CurrencyConverter extends AppCompatActivity {
                 } else {
                     Toast.makeText(CurrencyConverter.this, "No conversion to save", Toast.LENGTH_SHORT).show();
                 }
-            }
-        });
-
-        queryViewModel.getAllQueries().observe(this, new Observer<List<ConversionQuery>>() {
-            @Override
-            public void onChanged(List<ConversionQuery> queries) {
-                adapter.submitList(queries);
             }
         });
 
@@ -157,4 +160,36 @@ public class CurrencyConverter extends AppCompatActivity {
 
         Volley.newRequestQueue(this).add(jsonObjectRequest);
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main_currency, menu);
+        return true;
+
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_help) {
+            showHelpDialog();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    private void showHelpDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle("Help")
+                .setMessage("Welcome to Currency Converter!\n" +
+                        "\n" +
+                        "1. Enter the amount you wish to convert in the input field.\n" +
+                        "2. Select the source currency from the 'Source Currency' dropdown list.\n" +
+                        "3. Select the destination currency from the 'Destination Currency' dropdown list.\n" +
+                        "4. Click the 'Convert' button to see the result.\n" +
+                        "5. If you wish to save the conversion, click the 'Save Conversion' button.\n" +
+                        "6. To view saved conversions, click the 'View Saved Conversions' button.\n" +
+                        "\n" +
+                        "Enjoy your usage!\n")
+                .setPositiveButton(android.R.string.ok, null)
+                .show();
+    }
+
 }
