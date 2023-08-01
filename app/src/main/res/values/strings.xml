@@ -27,6 +27,13 @@
     <!-- Error Messages -->
     <string name="error_server">Server error, please try again later.</string>
     <string name="error_invalid_input">Invalid input. Please check your entries.</string>
+    <string name="view_saved_conversions">View Saved Conversions</string>
+    <string name="save_conversion">Save Conversion</string>
+    <string name="result">Result</string>
+    <string name="convert">Convert</string>
+    <string name="destination_currency">Destination Currency:</string>
+    <string name="source_currency">Source Currency:</string>
+    <string name="enter_amount">Enter amount...</string>
 
     <!-- Currencies -->
     <string-array name="currency_array">

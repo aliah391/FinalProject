@@ -9,7 +9,7 @@
         android:id="@+id/editText_amount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter amount..."
+        android:hint="@string/enter_amount"
         android:inputType="numberDecimal"
         android:layout_marginBottom="16dp" />
 
@@ -17,7 +17,7 @@
         android:id="@+id/textView_from_currency_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Source Currency:"
+        android:text="@string/source_currency"
         android:layout_marginBottom="8dp" />
 
     <Spinner
@@ -30,7 +30,7 @@
         android:id="@+id/textView_to_currency_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Destination Currency:"
+        android:text="@string/destination_currency"
         android:layout_marginBottom="8dp" />
 
     <Spinner
@@ -43,14 +43,14 @@
         android:id="@+id/button_convert"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Convert"
+        android:text="@string/convert"
         android:layout_marginBottom="16dp" />
 
     <TextView
         android:id="@+id/textView_result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Result"
+        android:text="@string/result"
         tools:text="Result: "
         android:layout_marginBottom="16dp" />
 
@@ -58,13 +58,13 @@
         android:id="@+id/button_save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Save Conversion"
+        android:text="@string/save_conversion"
         android:layout_marginBottom="16dp" />
 
     <Button
         android:id="@+id/button_view_saved"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="View Saved Conversions" />
+        android:text="@string/view_saved_conversions" />
 
 </LinearLayout>

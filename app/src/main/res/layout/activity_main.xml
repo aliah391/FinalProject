@@ -25,7 +25,7 @@
         app:layout_constraintEnd_toEndOf="@+id/Aviation"
         app:layout_constraintStart_toStartOf="@+id/Aviation"
         app:layout_constraintTop_toBottomOf="@+id/Aviation" />
-    [10:37 PM]
+
     <Button
         android:id="@+id/Trivia"
         android:layout_width="wrap_content"
