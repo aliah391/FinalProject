@@ -1,6 +1,7 @@
 package algonquin.cst2335.finalproject;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,6 +11,13 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -18,10 +26,9 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import algonquin.cst2335.finalproject.databinding.ActivityCurrencyConverterBinding;
 
@@ -35,13 +42,28 @@ public class CurrencyConverter extends AppCompatActivity {
     private Button saveButton;
     private Button viewSavedButton;
 
+    private RecyclerView recyclerView;
+    private SavedConversionsAdapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
+
+    private ConversionQueryViewModel queryViewModel;
+    private ConversionQuery lastConversion = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityCurrencyConverterBinding binding = ActivityCurrencyConverterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Init UI elements
+        queryViewModel = new ViewModelProvider(this).get(ConversionQueryViewModel.class);
+
+        recyclerView = findViewById(R.id.my_recycler_view);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+
+        adapter = new SavedConversionsAdapter();
+        recyclerView.setAdapter(adapter);
+
         amountEditText = findViewById(R.id.editText_amount);
         fromCurrencySpinner = findViewById(R.id.spinner_from_currency);
         toCurrencySpinner = findViewById(R.id.spinner_to_currency);
@@ -50,17 +72,15 @@ public class CurrencyConverter extends AppCompatActivity {
         saveButton = findViewById(R.id.button_save);
         viewSavedButton = findViewById(R.id.button_view_saved);
 
-        // Let's assume these are the available currencies
         List<String> currencies = new ArrayList<>();
         currencies.add("USD");
         currencies.add("CAD");
         currencies.add("EUR");
         currencies.add("JPY");
 
-        // Setting up adapters for spinners
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, currencies);
-        fromCurrencySpinner.setAdapter(adapter);
-        toCurrencySpinner.setAdapter(adapter);
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, currencies);
+        fromCurrencySpinner.setAdapter(spinnerAdapter);
+        toCurrencySpinner.setAdapter(spinnerAdapter);
 
         convertButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,43 +92,55 @@ public class CurrencyConverter extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: Implement save conversion logic here
-                Toast.makeText(CurrencyConverter.this, "Conversion saved", Toast.LENGTH_SHORT).show();
+                if (lastConversion != null) {
+                    queryViewModel.insert(lastConversion);
+                    Toast.makeText(CurrencyConverter.this, "Conversion saved", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(CurrencyConverter.this, "No conversion to save", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        queryViewModel.getAllQueries().observe(this, new Observer<List<ConversionQuery>>() {
+            @Override
+            public void onChanged(List<ConversionQuery> queries) {
+                adapter.submitList(queries);
             }
         });
 
         viewSavedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: Implement view saved conversions logic here
-                Toast.makeText(CurrencyConverter.this, "Viewing saved conversions", Toast.LENGTH_SHORT).show();
+                // Start the SavedConversionsActivity
+                Intent intent = new Intent(CurrencyConverter.this, SavedConversionsActivity.class);
+                startActivity(intent);
             }
         });
+
     }
 
     private void convertCurrency() {
+        Log.d("CurrencyConverter", "Entered convertCurrency()");
+
         String amount = amountEditText.getText().toString();
         String fromCurrency = fromCurrencySpinner.getSelectedItem().toString();
         String toCurrency = toCurrencySpinner.getSelectedItem().toString();
 
-        String url = "https://currency-converter-by-api-ninjas.p.rapidapi.com/v1/convertcurrency" + fromCurrency + "&want=" + toCurrency + "&amount=" + amount;
-
-        // The headers you have to provide in your request to rapid API
-        HashMap<String, String> headers = new HashMap<>();
-        headers.put("x-rapidapi-host", "currency-converter-by-api-ninjas.p.rapidapi.com");
-        headers.put("x-rapidapi-key", "64e435c587msha30972a0430b370p1c114cjsnaeb4e6d490a4");
+        String url = "https://api.getgeoapi.com/v2/currency/convert?format=json&from="
+                + fromCurrency + "&to=" + toCurrency + "&amount=" + amount + "&api_key=bc8f732a47c2574bc2dac6ef67c7833c9ef17882&format=json";
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                    @SuppressLint("StringFormatInvalid")
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            // Log the whole response
                             Log.d("API Response", "Response: " + response.toString());
 
-                            // TODO: once you see the structure, replace the field names here
-                            double convertedAmount = response.getDouble("amount");
-                            resultTextView.setText("Converted Amount: " + convertedAmount);
+                            double convertedAmount = response.getJSONObject("rates").getJSONObject(toCurrency).getDouble("rate");
+                            lastConversion = new ConversionQuery(fromCurrency, toCurrency, Double.parseDouble(amount), convertedAmount);
+                            resultTextView.setText(getString(R.string.converted_amount, convertedAmount));
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -118,19 +150,11 @@ public class CurrencyConverter extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         if (error.networkResponse != null && error.networkResponse.data != null) {
                             String errorResponse = new String(error.networkResponse.data);
-                            Log.e("Error response", errorResponse);
                         }
-                        // Log the error
                         Log.e("API Error", error.toString());
                     }
-                }) {
-            @Override
-            public Map<String, String> getHeaders() {
-                return headers;
-            }
-        };
+                });
 
-// Add the request to the RequestQueue.
         Volley.newRequestQueue(this).add(jsonObjectRequest);
     }
 }

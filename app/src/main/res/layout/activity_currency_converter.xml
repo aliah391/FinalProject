@@ -18,7 +18,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/source_currency"
-        android:layout_marginBottom="8dp" />
+        android:layout_marginBottom="8dp"
+        android:textSize="16dp"/>
 
     <Spinner
         android:id="@+id/spinner_from_currency"
@@ -31,7 +32,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/destination_currency"
-        android:layout_marginBottom="8dp" />
+        android:layout_marginBottom="8dp"
+        android:textSize="16dp" />
 
     <Spinner
         android:id="@+id/spinner_to_currency"
@@ -52,7 +54,8 @@
         android:layout_height="wrap_content"
         android:text="@string/result"
         tools:text="Result: "
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="16dp"
+        android:textSize="18dp" />
 
     <Button
         android:id="@+id/button_save"
@@ -66,5 +69,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/view_saved_conversions" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/my_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical" />
 
 </LinearLayout>

@@ -1,14 +1,14 @@
 <resources>
-    <string name="app_name">Currency Converter</string>
 
+    <string name="app_name" >Currency converter</string>
     <!-- Conversion Activity -->
-    <string name="hint_amount">Enter amount...</string>
-    <string name="hint_source_currency">Select source currency...</string>
-    <string name="hint_destination_currency">Select destination currency...</string>
-    <string name="button_convert">Convert</string>
-    <string name="result_text">Result: </string>
-    <string name="button_save_conversion">Save Conversion</string>
-    <string name="button_view_saved">View Saved Conversions</string>
+    <string name="enter_amount">Enter amount…</string>
+    <string name="source_currency">Source Currency:</string>
+    <string name="destination_currency">Destination Currency:</string>
+    <string name="convert">Convert</string>
+    <string name="result">Result</string>
+    <string name="save_conversion">Save Conversion</string>
+    <string name="view_saved_conversions">View Saved Conversions</string>
 
     <!-- Saved Conversions Activity -->
     <string name="title_saved_conversions">Saved Conversions</string>
@@ -27,40 +27,18 @@
     <!-- Error Messages -->
     <string name="error_server">Server error, please try again later.</string>
     <string name="error_invalid_input">Invalid input. Please check your entries.</string>
-    <string name="view_saved_conversions">View Saved Conversions</string>
-    <string name="save_conversion">Save Conversion</string>
-    <string name="result">Result</string>
-    <string name="convert">Convert</string>
-    <string name="destination_currency">Destination Currency:</string>
-    <string name="source_currency">Source Currency:</string>
-    <string name="enter_amount">Enter amount...</string>
+    <string name="query">Query</string>
+    <string name="results">Results</string>
+    <string name="converted_amount">Converted Amount %1$.2f</string>
+
 
     <!-- Currencies -->
     <string-array name="currency_array">
-        <item>Canadian dollar</item>
-        <item>Chinese renminbi</item>
-        <item>European euro</item>
-        <item>Hong Kong dollar</item>
-        <item>Indian rupee</item>
-        <item>Indonesian rupiah</item>
-        <item>Japanese yen</item>
-        <item>Malaysian ringgit</item>
-        <item>Mexican peso</item>
-        <item>New Zealand dollar</item>
-        <item>Norwegian kron</item>
-        <item>Peruvian new sol</item>
-        <item>Russian ruble</item>
-        <item>Saudi riyal </item>
-        <item>Singapore dollar</item>
-        <item>South African rand</item>
-        <item>South Korean won</item>
-        <item>Swedish krona</item>
-        <item>Swiss franc </item>
-        <item>Taiwanese dollar</item>
-        <item>Thai baht</item>
-        <item>Turkish lira</item>
-        <item>UK pound sterling </item>
         <item>US dollar</item>
-        <item>Vietnamese dong</item>
+        <item>Canadian dollar</item>
+        <item>European euro</item>
+        <item>Japanese yen</item>
     </string-array>
+
+
 </resources>

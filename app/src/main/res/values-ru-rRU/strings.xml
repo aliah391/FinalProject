@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="enter_amount">Введите сумму</string>
+    <string name="source_currency">Исходная валюта:</string>
+    <string name="destination_currency">Валюта назначения:</string>
+    <string name="convert">Конвертировать</string>
+    <string name="result">Результат</string>
+    <string name="save_conversion">Сохранить конвертацию</string>
+    <string name="view_saved_conversions">Просмотреть сохраненные конвертации</string>
+    <string name="title_saved_conversions">Сохранить конвертацию</string>
+    <string name="button_remove_query">Удалить запрос</string>
+    <string name="snackbar_query_removed">Запрос удален!</string>
+    <string name="snackbar_undo_removal">Отменить</string>
+    <string name="toast_conversion_saved">Конвертация успешно сохранена</string>
+    <string name="alertdialog_exit_title">Выйти из приложения?</string>
+    <string name="alertdialog_exit_positive_button">Да</string>
+    <string name="alertdialog_exit_negative_button">Нет</string>
+    <string name="error_server">Ошибка сервера, повторите попытку позже.</string>
+    <string name="error_invalid_input">Неверный ввод. Пожалуйста, проверьте введенные данные.</string>
+    <string name="results">Результаты</string>
+    <string name="app_name">Конвертер валют</string>
+    <string name="query">Запрос</string>
+    <string name="converted_amount">Конвертированная сумма: %1$.2f</string>
+</resources>
