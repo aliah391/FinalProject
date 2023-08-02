@@ -2,6 +2,7 @@ package algonquin.cst2335.finalproject;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -14,10 +15,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -37,6 +38,9 @@ import java.util.List;
 import algonquin.cst2335.finalproject.databinding.ActivityCurrencyConverterBinding;
 
 public class CurrencyConverter extends AppCompatActivity {
+
+    // Declare the SharedPreferences object
+    private SharedPreferences sharedPreferences;
 
     private EditText amountEditText;
     private Spinner fromCurrencySpinner;
@@ -58,6 +62,9 @@ public class CurrencyConverter extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         ActivityCurrencyConverterBinding binding = ActivityCurrencyConverterBinding.inflate(getLayoutInflater());
         setContentView(R.layout.activity_currency_converter); // replace with your layout
+
+        // Initialize the SharedPreferences with a custom name "MyPreferences"
+        sharedPreferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
 
         Toolbar toolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
@@ -120,9 +127,12 @@ public class CurrencyConverter extends AppCompatActivity {
             }
         });
 
+        // Retrieve the saved amount from SharedPreferences and set it in the EditText
+        String savedAmount = sharedPreferences.getString("amount", "");
+        amountEditText.setText(savedAmount);
     }
 
-    private void convertCurrency() {
+        private void convertCurrency() {
         Log.d("CurrencyConverter", "Entered convertCurrency()");
 
         String amount = amountEditText.getText().toString();
@@ -135,30 +145,37 @@ public class CurrencyConverter extends AppCompatActivity {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                     @SuppressLint("StringFormatInvalid")
+                    // Inside the onResponse() method of convertCurrency()
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
                             Log.d("API Response", "Response: " + response.toString());
 
-                            double convertedAmount = response.getJSONObject("rates").getJSONObject(toCurrency).getDouble("rate");
-                            lastConversion = new ConversionQuery(fromCurrency, toCurrency, Double.parseDouble(amount), convertedAmount);
+                            double conversionRate = response.getJSONObject("rates").getJSONObject(toCurrency).getDouble("rate");
+                            double amountToConvert = Double.parseDouble(amount);
+                            double convertedAmount = amountToConvert * conversionRate;
+
+                            lastConversion = new ConversionQuery(fromCurrency, toCurrency, amountToConvert, convertedAmount);
                             resultTextView.setText(getString(R.string.converted_amount, convertedAmount));
 
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        if (error.networkResponse != null && error.networkResponse.data != null) {
-                            String errorResponse = new String(error.networkResponse.data);
-                        }
-                        Log.e("API Error", error.toString());
+
+                }, error -> {
+                    if (error.networkResponse != null && error.networkResponse.data != null) {
+                        String errorResponse = new String(error.networkResponse.data);
                     }
+                    Log.e("API Error", error.toString());
                 });
 
         Volley.newRequestQueue(this).add(jsonObjectRequest);
+
+        // Save the amount to SharedPreferences
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("amount", amount);
+        editor.apply();
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
