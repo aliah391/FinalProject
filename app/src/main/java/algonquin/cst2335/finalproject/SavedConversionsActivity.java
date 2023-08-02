@@ -4,13 +4,11 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.android.material.snackbar.Snackbar;
 
 public class SavedConversionsActivity extends AppCompatActivity {
@@ -40,26 +38,25 @@ public class SavedConversionsActivity extends AppCompatActivity {
 
 
                 new AlertDialog.Builder(SavedConversionsActivity.this)
-                        .setTitle("Delete Conversion")
-                        .setMessage("Are you sure you want to delete this conversion?")
+                        .setTitle(getString(R.string.dialog_title_delete_conversion))
+                        .setMessage(getString(R.string.dialog_message_delete_conversion))
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 // Delete the conversion
                                 queryViewModel.delete(queryToBeDeleted);
-                                Toast.makeText(SavedConversionsActivity.this, "Conversion deleted", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SavedConversionsActivity.this, getString(R.string.toast_conversion_deleted), Toast.LENGTH_SHORT).show();
 
-                                Snackbar.make(recyclerView, "Conversion deleted", Snackbar.LENGTH_LONG)
-                                        .setAction("UNDO", new View.OnClickListener() {
+                                Snackbar.make(recyclerView, getString(R.string.snackbar_conversion_deleted), Snackbar.LENGTH_LONG)
+                                        .setAction(getString(R.string.snackbar_undo_action), new View.OnClickListener() {
                                             @Override
                                             public void onClick(View v) {
                                                 queryViewModel.insert(queryToBeDeleted);
-                                                Toast.makeText(SavedConversionsActivity.this, "Conversion restored", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(SavedConversionsActivity.this, getString(R.string.toast_conversion_restored), Toast.LENGTH_SHORT).show();
                                             }
                                         }).show();
                             }
                         })
                         .setNegativeButton(android.R.string.no, null)
-                       // .setIcon(android.R.drawable.ic_dialog_alert)
                         .show();
             }
         });

@@ -79,6 +79,3 @@ public class SavedConversionsAdapter extends ListAdapter<ConversionQuery, SavedC
         }
     }
 }
-
-
-

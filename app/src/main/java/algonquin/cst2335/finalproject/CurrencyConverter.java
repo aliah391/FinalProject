@@ -15,33 +15,28 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import algonquin.cst2335.finalproject.databinding.ActivityCurrencyConverterBinding;
 
 public class CurrencyConverter extends AppCompatActivity {
 
-    // Declare the SharedPreferences object
     private SharedPreferences sharedPreferences;
-
     private EditText amountEditText;
     private Spinner fromCurrencySpinner;
     private Spinner toCurrencySpinner;
@@ -49,11 +44,9 @@ public class CurrencyConverter extends AppCompatActivity {
     private TextView resultTextView;
     private Button saveButton;
     private Button viewSavedButton;
-
     private RecyclerView recyclerView;
     private SavedConversionsAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-
     private ConversionQueryViewModel queryViewModel;
     private ConversionQuery lastConversion = null;
 
@@ -61,16 +54,14 @@ public class CurrencyConverter extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityCurrencyConverterBinding binding = ActivityCurrencyConverterBinding.inflate(getLayoutInflater());
-        setContentView(R.layout.activity_currency_converter); // replace with your layout
+        setContentView(R.layout.activity_currency_converter);
 
-        // Initialize the SharedPreferences with a custom name "MyPreferences"
         sharedPreferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
 
         Toolbar toolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
 
-        // If you want to display the title
-        getSupportActionBar().setTitle("Currency Converter");
+        getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
 
         queryViewModel = new ViewModelProvider(this).get(ConversionQueryViewModel.class);
 
@@ -89,15 +80,40 @@ public class CurrencyConverter extends AppCompatActivity {
         saveButton = findViewById(R.id.button_save);
         viewSavedButton = findViewById(R.id.button_view_saved);
 
-        List<String> currencies = new ArrayList<>();
-        currencies.add("USD");
-        currencies.add("CAD");
-        currencies.add("EUR");
-        currencies.add("JPY");
+        List<Currency> currencies = new ArrayList<>();
+        currencies.add(new Currency("AUD", getResources().getString(R.string.aud_description))); // Австралийский доллар
+        currencies.add(new Currency("BRL", getResources().getString(R.string.brl_description))); // Бразильский реал
+        currencies.add(new Currency("CAD", getResources().getString(R.string.cad_description))); // Канадский доллар
+        currencies.add(new Currency("CHF", getResources().getString(R.string.chf_description))); // Швейцарский франк
+        currencies.add(new Currency("CNY", getResources().getString(R.string.cny_description))); // Китайский юань
+        currencies.add(new Currency("EUR", getResources().getString(R.string.eur_description))); // Евро
+        currencies.add(new Currency("GBP", getResources().getString(R.string.gbp_description))); // Фунт стерлингов Великобритании
+        currencies.add(new Currency("HKD", getResources().getString(R.string.hkd_description))); // Гонконгский доллар
+        currencies.add(new Currency("IDR", getResources().getString(R.string.idr_description))); // Индонезийская рупия
+        currencies.add(new Currency("INR", getResources().getString(R.string.inr_description))); // Индийская рупия
+        currencies.add(new Currency("JPY", getResources().getString(R.string.jpy_description))); // Японская иена
+        currencies.add(new Currency("KRW", getResources().getString(R.string.krw_description))); // Южнокорейская вона
+        currencies.add(new Currency("MXN", getResources().getString(R.string.mxn_description))); // Мексиканское песо
+        currencies.add(new Currency("MYR", getResources().getString(R.string.myr_description))); // Малайзийский ринггит
+        currencies.add(new Currency("NOK", getResources().getString(R.string.nok_description))); // Норвежская крона
+        currencies.add(new Currency("NZD", getResources().getString(R.string.nzd_description))); // Новозеландский доллар
+        currencies.add(new Currency("PEN", getResources().getString(R.string.pen_description))); // Перуанский новый соль
+        currencies.add(new Currency("RUB", getResources().getString(R.string.rub_description))); // Российский рубль
+        currencies.add(new Currency("SAR", getResources().getString(R.string.sar_description))); // Саудовский риял
+        currencies.add(new Currency("SEK", getResources().getString(R.string.sek_description))); // Шведская крона
+        currencies.add(new Currency("SGD", getResources().getString(R.string.sgd_description))); // Сингапурский доллар
+        currencies.add(new Currency("THB", getResources().getString(R.string.thb_description))); // Таиландский бат
+        currencies.add(new Currency("TWD", getResources().getString(R.string.twd_description))); // Новый тайваньский доллар
+        currencies.add(new Currency("TRY", getResources().getString(R.string.try_description))); // Турецкая лира
+        currencies.add(new Currency("USD", getResources().getString(R.string.usd_description))); // Доллар США
+        currencies.add(new Currency("VND", getResources().getString(R.string.vnd_description))); // Вьетнамский донг
+        currencies.add(new Currency("ZAR", getResources().getString(R.string.zar_description))); // Южноафриканский рэнд
 
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, currencies);
+
+        ArrayAdapter<Currency> spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, currencies);
         fromCurrencySpinner.setAdapter(spinnerAdapter);
         toCurrencySpinner.setAdapter(spinnerAdapter);
+
 
         convertButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,9 +127,10 @@ public class CurrencyConverter extends AppCompatActivity {
             public void onClick(View v) {
                 if (lastConversion != null) {
                     queryViewModel.insert(lastConversion);
-                    Toast.makeText(CurrencyConverter.this, "Conversion saved", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CurrencyConverter.this, getString(R.string.toast_conversion_saved), Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(CurrencyConverter.this, "No conversion to save", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CurrencyConverter.this, getString(R.string.toast_no_conversion_to_save), Toast.LENGTH_SHORT).show();
+
                 }
             }
         });
@@ -127,17 +144,16 @@ public class CurrencyConverter extends AppCompatActivity {
             }
         });
 
-        // Retrieve the saved amount from SharedPreferences and set it in the EditText
         String savedAmount = sharedPreferences.getString("amount", "");
         amountEditText.setText(savedAmount);
     }
 
-        private void convertCurrency() {
+    private void convertCurrency() {
         Log.d("CurrencyConverter", "Entered convertCurrency()");
 
         String amount = amountEditText.getText().toString();
-        String fromCurrency = fromCurrencySpinner.getSelectedItem().toString();
-        String toCurrency = toCurrencySpinner.getSelectedItem().toString();
+        String fromCurrency = ((Currency)fromCurrencySpinner.getSelectedItem()).getCode();
+        String toCurrency = ((Currency)toCurrencySpinner.getSelectedItem()).getCode();
 
         String url = "https://api.getgeoapi.com/v2/currency/convert?format=json&from="
                 + fromCurrency + "&to=" + toCurrency + "&amount=" + amount + "&api_key=bc8f732a47c2574bc2dac6ef67c7833c9ef17882&format=json";
@@ -182,29 +198,27 @@ public class CurrencyConverter extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main_currency, menu);
         return true;
-
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_help) {
+        int id = item.getItemId();
+        if (id == R.id.action_help) {
             showHelpDialog();
+            return true;
+        } else if (id == R.id.back_main_menu) {
+            // здесь перейдите на главный экран
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
     private void showHelpDialog() {
         new AlertDialog.Builder(this)
-                .setTitle("Help")
-                .setMessage("Welcome to Currency Converter!\n" +
-                        "\n" +
-                        "1. Enter the amount you wish to convert in the input field.\n" +
-                        "2. Select the source currency from the 'Source Currency' dropdown list.\n" +
-                        "3. Select the destination currency from the 'Destination Currency' dropdown list.\n" +
-                        "4. Click the 'Convert' button to see the result.\n" +
-                        "5. If you wish to save the conversion, click the 'Save Conversion' button.\n" +
-                        "6. To view saved conversions, click the 'View Saved Conversions' button.\n" +
-                        "\n" +
-                        "Enjoy your usage!\n")
+                .setTitle(getString(R.string.help_dialog_title))
+                .setMessage(getString(R.string.help_dialog_message))
                 .setPositiveButton(android.R.string.ok, null)
                 .show();
     }

@@ -13,8 +13,6 @@ public abstract class ConversionQueryDatabase extends RoomDatabase {
 
     private static volatile ConversionQueryDatabase INSTANCE;
 
-    // Define the ExecutorService as a singleton to prevent having multiple instances
-    // of the database opened at the same time.
     private static final int NUMBER_OF_THREADS = 4;
     static final ExecutorService databaseWriteExecutor =
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);

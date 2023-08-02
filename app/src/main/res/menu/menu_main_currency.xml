@@ -2,10 +2,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_help"
         android:icon="@drawable/help"
+        android:id="@+id/action_help"
         android:title="@string/action_help"
+        android:orderInCategory="100"
         app:showAsAction="always" />
 
 
+    <item
+        android:id="@+id/back_main_menu"
+        android:title="@string/back_main_menu"
+        android:orderInCategory="101"
+        app:showAsAction="never" />
 </menu>
