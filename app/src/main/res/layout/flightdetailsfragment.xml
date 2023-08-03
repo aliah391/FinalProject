@@ -14,7 +14,7 @@
         android:text="@string/destination"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameOfFlight" />
+        app:layout_constraintTop_toBottomOf="@+id/nameOfFlightText" />
 
     <TextView
         android:id="@+id/nameText"
@@ -47,7 +47,7 @@
         app:layout_constraintTop_toBottomOf="@+id/destination" />
 
     <TextView
-        android:id="@+id/nameOfFlight"
+        android:id="@+id/nameOfFlightText"
         android:layout_width="106dp"
         android:layout_height="26dp"
         android:layout_marginTop="15dp"

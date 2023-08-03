@@ -32,6 +32,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import algonquin.cst2335.finalproject.databinding.AviationBinding;
+import algonquin.cst2335.finalproject.databinding.FlightdetailsfragmentBinding;
 //import algonquin.cst2335.finalproject.databinding.NameOfFlightBinding;
 
 
@@ -68,6 +69,9 @@ public class Aviation extends AppCompatActivity {
         binding = AviationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setSupportActionBar(binding.toolbar2);
+
+
+
 //        fd = Room.databaseBuilder(getApplicationContext(), FlightDatabase.class, "database-name").build();
 //         fDAO= fd.flightDAO();
 
@@ -80,7 +84,9 @@ public class Aviation extends AppCompatActivity {
             binding.airportCode.setText("");
             String message = "Flights are loading";
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+            AviationViewModel.selectedMessage.observe(this, (newMessageValue) -> {
 
+            });
 //            prefs.getString(airportCode, "");
 
 
@@ -200,6 +206,9 @@ public class Aviation extends AppCompatActivity {
 
                 });
                 builder.setPositiveButton("yes", (dialog, which) -> {
+                    int position = getAbsoluteAdapterPosition();
+                    FlightDetails selectedFlight = detailsTemp.get(position);
+                    AviationViewModel.selectedMessage.postValue(selectedFlight);
                     /*
                     arrayname flightdetails = detailsTemp.get(position);
                     intent new page
