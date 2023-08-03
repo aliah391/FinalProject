@@ -1,5 +1,13 @@
 package algonquin.cst2335.finalproject;
+
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class SavedImages {
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
     private String imageUrl;
     private int width;
     private int height;
@@ -36,5 +44,13 @@ public class SavedImages {
 
     public String getUrl() {
         return imageUrl;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

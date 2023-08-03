@@ -1,10 +1,9 @@
 package algonquin.cst2335.finalproject;
 
-import android.content.Intent;
+
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -12,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -81,19 +81,25 @@ public class SavedImagesActivity extends AppCompatActivity implements ImageListA
     }
 
     private List<SavedImages> loadImages() {
-        // This method should load the list of saved images from your database.
-        // The implementation depends on how you're saving the images.
-        // Here's an example implementation that returns a list with dummy data:
+        AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "images").build();
+        SavedImagesDao dao = db.savedImagesDao();
+
         List<SavedImages> savedImages = new ArrayList<>();
-        savedImages.add(new SavedImages("https://placebear.com/200/200", 200, 200));
-        savedImages.add(new SavedImages("https://placebear.com/300/300", 300, 300));
+        new Thread(() -> {
+            savedImages.addAll(dao.getAll());
+        }).start();
+
         return savedImages;
     }
 
     private void deleteImage(SavedImages image) {
-        // This method should delete the given image from your database.
-        // The implementation depends on how you're saving the images.
-        // Here's an example implementation that removes the image from the list:
+        AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "images").build();
+        SavedImagesDao dao = db.savedImagesDao();
+
+        new Thread(() -> {
+            dao.delete(image);
+        }).start();
+
         adapter.removeImage(image);
     }
 }

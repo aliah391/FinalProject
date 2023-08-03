@@ -1,4 +1,6 @@
 package algonquin.cst2335.finalproject;
+
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -7,10 +9,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import androidx.appcompat.widget.Toolbar;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.room.Room;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -18,7 +20,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.snackbar.Snackbar;
-import com.squareup.picasso.Picasso;
 
 public class ImageActivity extends AppCompatActivity {
 
@@ -108,6 +109,11 @@ public class ImageActivity extends AppCompatActivity {
 
 
     private void saveImageToDatabase(String imageUrl, int width, int height) {
-        // TODO: Save the image to your database using the provided information
+        AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "images").build();
+        SavedImagesDao dao = db.savedImagesDao();
+
+        new Thread(() -> {
+            dao.insert(new SavedImages(imageUrl, width, height));
+        }).start();
     }
 }
