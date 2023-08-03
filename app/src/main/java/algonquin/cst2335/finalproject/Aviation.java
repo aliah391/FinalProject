@@ -52,11 +52,13 @@ public class Aviation extends AppCompatActivity {
             Amodel.details.postValue(details = new ArrayList<NameOfflight>());
         }
 
+
+
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
         binding.button.setOnClickListener(click ->{
 
             String airportCode = binding.airportCode.getText().toString();
-            String stringURL = "http://api.aviationstack.com/v1/flights?access_key=d88afd4e913c4d7e46737a949c4c94ec&dep_iata=" + URLEncoder.encode(airportCode);
+            String stringURL = "https://api.aviationstack.com/v1/flights?access_key=d88afd4e913c4d7e46737a949c4c94ec&dep_iata=" + URLEncoder.encode(airportCode);
 
 
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, stringURL, null,
