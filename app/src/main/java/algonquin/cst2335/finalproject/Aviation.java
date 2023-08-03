@@ -14,6 +14,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,7 +34,6 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import algonquin.cst2335.finalproject.databinding.AviationBinding;
-import algonquin.cst2335.finalproject.databinding.FlightdetailsfragmentBinding;
 //import algonquin.cst2335.finalproject.databinding.NameOfFlightBinding;
 
 
@@ -42,6 +43,7 @@ public class Aviation extends AppCompatActivity {
     FlightDatabase fdata;
     private String airportCode;
     AviationViewModel aviationModel;
+
     private RequestQueue queue = null;
 
     private RecyclerView.Adapter myAdapter;
@@ -70,10 +72,16 @@ public class Aviation extends AppCompatActivity {
         setContentView(binding.getRoot());
         setSupportActionBar(binding.toolbar2);
 
+        aviationModel.selectedMessage.observe(this, (newValue)->{
+            FragmentManager fMgr = getSupportFragmentManager();
+            FragmentTransaction tx = fMgr.beginTransaction();
+            FlightDetailsFragment flightFragment = new FlightDetailsFragment( newValue );
+            tx.add(R.id.fragmentContainer, flightFragment);
+            tx.commit();
+        });
 
 
-//        fd = Room.databaseBuilder(getApplicationContext(), FlightDatabase.class, "database-name").build();
-//         fDAO= fd.flightDAO();
+//
 
 //        SharedPreferences prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
 //        SharedPreferences.Editor editor = prefs.edit();
@@ -129,6 +137,9 @@ public class Aviation extends AppCompatActivity {
 
 
         });
+
+
+
 
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
         binding.recyclerView.setAdapter(myAdapter = new RecyclerView.Adapter<MyFlightHolder>() {
@@ -186,6 +197,10 @@ public class Aviation extends AppCompatActivity {
                         "5. If you would like to delete the flight details from the flights you have saved, click the flight and confirm delete");
             });
         }return true;
+
+
+
+
     }
 
     class MyFlightHolder extends RecyclerView.ViewHolder {

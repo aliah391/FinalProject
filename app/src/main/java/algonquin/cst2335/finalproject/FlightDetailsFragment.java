@@ -8,11 +8,14 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.room.Room;
 
 
 import algonquin.cst2335.finalproject.databinding.FlightdetailsfragmentBinding;
 
 public class FlightDetailsFragment extends Fragment {
+    FlightDatabase fdatabase;
+    FlightDAO flightdao;
     FlightDetails selected;
     public FlightDetailsFragment(FlightDetails a){
         selected= a;
@@ -31,6 +34,11 @@ public class FlightDetailsFragment extends Fragment {
 //        binding.delayText.setText(selected.);
 //        binding.TerminalText.setText(selected.);
 
+        binding.saveData.setOnClickListener(clk -> {
+
+           fdatabase = Room.databaseBuilder(getContext().getApplicationContext(), FlightDatabase.class, "database-name").build();
+         flightdao= fdatabase.flightDAO();
+        } );
         return binding.getRoot();
 
     }
