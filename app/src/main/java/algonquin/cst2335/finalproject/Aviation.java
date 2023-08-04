@@ -49,7 +49,7 @@ public class Aviation extends AppCompatActivity {
     private RecyclerView.Adapter myAdapter;
     private ArrayList<FlightDetails> detailsTemp = new ArrayList<>();
 
-    // private ArrayList<FlightDetails> details = new ArrayList<>();
+
     public Aviation() {
     }
 
