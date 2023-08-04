@@ -34,6 +34,7 @@ public class Aviation extends AppCompatActivity {
     AviationViewModel Amodel;
     private ArrayList<NameOfflight>details = new ArrayList<>();
     public Aviation(){}
+    MyRowHolder holder;
     private RequestQueue queue = null;
     private RecyclerView.Adapter<MyRowHolder> myAdapter;
 
@@ -55,10 +56,11 @@ public class Aviation extends AppCompatActivity {
 
 
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
         binding.button.setOnClickListener(click ->{
 
             String airportCode = binding.airportCode.getText().toString();
-            String stringURL = "https://api.aviationstack.com/v1/flights?access_key=d88afd4e913c4d7e46737a949c4c94ec&dep_iata=" + URLEncoder.encode(airportCode);
+            String stringURL = "http://api.aviationstack.com/v1/flights?access_key=d88afd4e913c4d7e46737a949c4c94ec&dep_iata=" + URLEncoder.encode(airportCode);
 
 
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, stringURL, null,
@@ -80,8 +82,9 @@ public class Aviation extends AppCompatActivity {
 //                        String arrivalDelay = destination.getString("delay");
                                 NameOfflight fName = new NameOfflight(flightName);
                                 details.add(fName);
-                                myAdapter.notifyItemInserted(details.size() - 1);
                                 myAdapter.notifyDataSetChanged();
+                                myAdapter.notifyItemInserted(details.size() - 1);
+
                             }
 
 
@@ -104,13 +107,14 @@ public class Aviation extends AppCompatActivity {
             @NonNull
             @Override
             public MyRowHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                NameofflightBinding binding = NameofflightBinding.inflate(getLayoutInflater(), parent, false);
+                NameofflightBinding binding = NameofflightBinding.inflate(getLayoutInflater());
                 return new MyRowHolder(binding.getRoot());
             }
 
             @Override
             public void onBindViewHolder(@NonNull MyRowHolder holder, int position) {
-                holder.nameOfFlight.setText("hello");//set text here
+                holder.nameOfFlight.setText("");//set text here
+
                 NameOfflight detail = details.get(position);// retrieve oject at this position
                 holder.nameOfFlight.setText(detail.getFlightName());// set text above
 
@@ -128,6 +132,7 @@ public class Aviation extends AppCompatActivity {
         });
         }
  class MyRowHolder extends RecyclerView.ViewHolder{
+
         TextView nameOfFlight;
         public MyRowHolder(View itemview){
             super(itemview);
