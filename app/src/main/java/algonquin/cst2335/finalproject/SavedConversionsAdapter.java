@@ -12,14 +12,27 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.Locale;
 
+/**
+ * Adapter class to populate a RecyclerView with saved currency conversion queries.
+ */
 public class SavedConversionsAdapter extends ListAdapter<ConversionQuery, SavedConversionsAdapter.ViewHolder> {
+
+    // Listener to handle item click events
     private OnItemClickListener listener;
 
+    /**
+     * Default constructor for this adapter, it uses a DiffUtil.ItemCallback.
+     */
     public SavedConversionsAdapter() {
         super(DIFF_CALLBACK);
     }
 
+    /**
+     * Static instance of DiffUtil.ItemCallback used to calculate the minimum amount
+     * of change to update the list.
+     */
     private static final DiffUtil.ItemCallback<ConversionQuery> DIFF_CALLBACK = new DiffUtil.ItemCallback<ConversionQuery>() {
+
         @Override
         public boolean areItemsTheSame(@NonNull ConversionQuery oldItem, @NonNull ConversionQuery newItem) {
             return oldItem.id == newItem.id;
@@ -51,18 +64,37 @@ public class SavedConversionsAdapter extends ListAdapter<ConversionQuery, SavedC
         holder.textView.setText(text);
     }
 
+    /**
+     * Returns the ConversionQuery object at the specified position.
+     *
+     * @param position The position of the ConversionQuery to return.
+     * @return The ConversionQuery object at the specified position.
+     */
     public ConversionQuery getConversionAt(int position) {
         return getItem(position);
     }
 
+    /**
+     * Sets the OnItemClickListener to handle item click events.
+     *
+     * @param listener The listener that will handle item click events.
+     */
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
 
+    /**
+     * Interface for defining a method to handle item click events.
+     */
     public interface OnItemClickListener {
         void onItemClick(int position);
     }
 
+    /**
+     * ViewHolder class to provide a reference to the views for each data item.
+     * Complex data items may need more than one view per item, and you provide access
+     * to all the views for a data item in a view holder.
+     */
     class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView textView;
 

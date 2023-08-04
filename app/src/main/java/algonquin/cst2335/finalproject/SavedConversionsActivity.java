@@ -4,18 +4,33 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.material.snackbar.Snackbar;
 
+/**
+ * An Activity that represents a list of saved currency conversions. This activity provides the
+ * ability to view a list of saved conversions, delete conversions, and restore deleted conversions.
+ * The list is managed by a RecyclerView and changes to the data are observed via a ViewModel.
+ */
 public class SavedConversionsActivity extends AppCompatActivity {
 
     private ConversionQueryViewModel queryViewModel;
     private SavedConversionsAdapter adapter;
 
+    /**
+     * Called when the activity is starting. Sets up the layout, initializes the ViewModel, and
+     * sets up the RecyclerView and its adapter. Also handles click events on items in the RecyclerView.
+     *
+     * @param savedInstanceState If the activity is being re-initialized after previously being
+     *     shut down then this Bundle contains the data it most recently supplied in onSaveInstanceState(Bundle).
+     *     Note: Otherwise it is null.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +50,6 @@ public class SavedConversionsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(int position) {
                 ConversionQuery queryToBeDeleted = adapter.getConversionAt(position);
-
 
                 new AlertDialog.Builder(SavedConversionsActivity.this)
                         .setTitle(getString(R.string.dialog_title_delete_conversion))
