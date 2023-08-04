@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">FinalProject</string>
-    <string name="ediText">Aviation Btn</string>
-    <string name="name_of_flight">Plane name</string>
+    <string name="aviationbtn">Plane Buttn</string>
+    <string name="ediText">Enta di name a di airport</string>
+    <string name="name_of_flight">plane name</string>
+    <string name="destination">Wei di plane a guh</string>
+    <string name="delay">How long di plane late by</string>
+    <string name="Terminal">Wei dem fi leff yuh</string>
+    <string name="gate">wei yah guh inside</string>
 
-    <string name="destination">Wei it a guh</string>
-    <string name="delay">Wei dem late by</string>
-    <string name="Terminal">Wei di people dem ago drop you off</string>
-    <string name="gate">Wei di plane deh</string>
-    <string name="Click">Press yah su</string>
 </resources>

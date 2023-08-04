@@ -6,10 +6,12 @@
     android:layout_height="match_parent">
 
     <TextView
+
         android:id="@+id/nameofflight"
         android:layout_width="94dp"
         android:layout_height="34dp"
         android:text="@string/name_of_flight"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="252dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

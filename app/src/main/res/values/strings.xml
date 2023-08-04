@@ -1,11 +1,18 @@
 <resources>
     <string name="app_name">FinalProject</string>
+
     <string name="ediText">Enter airport code</string>
+
+    <string name="aviationbtn">Aviation Button</string>
+
     <string name="name_of_flight">Name of airline</string>
     <string name="destination">Destination</string>
     <string name="delay">How long the delay is</string>
     <string name="Terminal">Drop-off point</string>
     <string name="gate">The planes location</string>
-    <string name="aviationbtn">Aviation Button</string>
+
     <string name="Click">Press here</string>
 </resources>
+
+</resources>
+
