@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.room.Room;
+
 
 
 import algonquin.cst2335.finalproject.databinding.FlightdetailsfragmentBinding;
@@ -31,22 +31,23 @@ import algonquin.cst2335.finalproject.databinding.FlightdetailsfragmentBinding;
             super.onCreateView(inflater, container, savedInstanceState);
 
             FlightdetailsfragmentBinding binding = FlightdetailsfragmentBinding.inflate(inflater);
+
+        binding.nameOfFlightText.setText(selected.flightName);
+        binding.destinationText.setText(selected.destination);
+        binding.gateText.setText(selected.gate);
+        binding.delayText.setText(selected.delay);
+        binding.TerminalText.setText(selected.Terminal);
+        binding.databaseid.setText("ID="+selected.id);
+
+//            binding.saveData.setOnClickListener(clk -> {
 //
-//        binding.nameOfFlightText.setText(selected.);
-//        binding.destinationText.setText(selected.);
-//        binding.gateText.setText(selected);
-//        binding.delayText.setText(selected.);
-//        binding.TerminalText.setText(selected.);
-
-            binding.saveData.setOnClickListener(clk -> {
-
-                fdatabase = Room.databaseBuilder(getContext().getApplicationContext(), FlightDatabase.class, "database-name").build();
-               // flightdao= fdatabase.flightDAO();
-            } );
+//               // fdatabase = Room.databaseBuilder(getContext().getApplicationContext(), FlightDatabase.class, "database-name").build();
+//               // flightdao= fdatabase.flightDAO();
+//            } );
             return binding.getRoot();
 
         }
     }
 
-}
+
 

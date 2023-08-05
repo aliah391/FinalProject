@@ -1,6 +1,7 @@
 package algonquin.cst2335.finalproject;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -8,10 +9,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -37,7 +41,7 @@ public class Aviation extends AppCompatActivity {
     MyRowHolder holder;
     private RequestQueue queue = null;
     private RecyclerView.Adapter<MyRowHolder> myAdapter;
-
+    ArrayList<String> flightinfo= new ArrayList<>();
 
     @Override
     protected void onCreate( Bundle savedInstanceState) {
@@ -53,7 +57,14 @@ public class Aviation extends AppCompatActivity {
             Amodel.details.postValue(details = new ArrayList<NameOfflight>());
         }
 
-
+Amodel.selectedMessage.observe(this,(newSelection)->{
+   FlightDetailsFragment flightfragment = new FlightDetailsFragment(newSelection);
+    FragmentManager fMgr = getSupportFragmentManager();
+    FragmentTransaction tx = fMgr.beginTransaction();
+    tx.add(R.id.fragmentContainer, flightfragment);
+    tx.addToBackStack("");
+    tx.commit();
+        });
 
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -62,11 +73,11 @@ public class Aviation extends AppCompatActivity {
             String airportCode = binding.airportCode.getText().toString();
             String stringURL = "http://api.aviationstack.com/v1/flights?access_key=d88afd4e913c4d7e46737a949c4c94ec&dep_iata=" + URLEncoder.encode(airportCode);
 
-
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, stringURL, null,
                     (response) -> {
-                        try {
 
+                        try {
+                            Log.d("Aviation", "JSON Response"+response.toString());
                             JSONArray dataArray = response.getJSONArray("data");
                             // int lengthOfArray = dataArray.getInt(-1);
 
@@ -75,13 +86,27 @@ public class Aviation extends AppCompatActivity {
                                 JSONObject airlineInfo = position.getJSONObject("airline");
                                 String flightName = airlineInfo.getString("name");
 
-//                        JSONObject destination = position.getJSONObject("arrival");
-//                        String arrival =  destination.getString("airport");
-//                        String arrivalTerminal = destination.getString("terminal");
-//                        String arrivalGate = destination.getString("gate");
-//                        String arrivalDelay = destination.getString("delay");
-                                NameOfflight fName = new NameOfflight(flightName);
-                                details.add(fName);
+                        JSONObject destination = position.getJSONObject("arrival");
+                        String arrival =  destination.getString("airport");
+                        String arrivalTerminal = destination.getString("terminal");
+                        String arrivalGate = destination.getString("gate");
+                        String arrivalDelay = destination.getString("delay");
+
+                                if (flightName.equalsIgnoreCase("empty")){
+                                    flightName ="Not available";
+                                    NameOfflight fName = new NameOfflight(flightName);
+                                    details.add(fName);
+                                }else{
+                                    NameOfflight fName = new NameOfflight(flightName);
+                                    details.add(fName);
+                                }
+
+
+                                flightinfo.add(arrival);
+                                flightinfo.add(arrivalDelay);
+                                flightinfo.add(arrivalTerminal);
+                                flightinfo.add(arrivalDelay);
+
                                 myAdapter.notifyDataSetChanged();
                                 myAdapter.notifyItemInserted(details.size() - 1);
 
@@ -94,8 +119,10 @@ public class Aviation extends AppCompatActivity {
                         }
                     },
                     (error) -> {
-                        int i = 0;
-                    });
+                        Log.e("Aviation", "Error retrieving Json response:"+error.toString());
+            });
+            request.setRetryPolicy(new DefaultRetryPolicy(10000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
             queue.add(request);
 
 
@@ -114,9 +141,9 @@ public class Aviation extends AppCompatActivity {
             @Override
             public void onBindViewHolder(@NonNull MyRowHolder holder, int position) {
                 holder.nameOfFlight.setText("");//set text here
-
                 NameOfflight detail = details.get(position);// retrieve oject at this position
                 holder.nameOfFlight.setText(detail.getFlightName());// set text above
+
 
             }
 
@@ -136,7 +163,12 @@ public class Aviation extends AppCompatActivity {
         TextView nameOfFlight;
         public MyRowHolder(View itemview){
             super(itemview);
-            nameOfFlight = itemview.findViewById(R.id.nameofflight);
+            nameOfFlight = itemView.findViewById(R.id.nameofflight);
+            itemView.setOnClickListener(click ->{
+                int position = getAbsoluteAdapterPosition();
+                NameOfflight selected = details.get(position);
+                Amodel.selectedMessage.postValue(selected);
+            });
         }
 
 
