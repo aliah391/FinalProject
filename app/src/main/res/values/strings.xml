@@ -3,8 +3,16 @@
     <string name="select_a_topic">Select quiz topic</string>
     <string name="select_topic_prompt">"topic "</string>
     <string name="select_the_number_of_questions">Number of question</string>
-    <string name="enter_the_number_of_questions">Questions</string>
+    <string name="enter_the_number_of_questions">Enter the no. of Questions</string>
     <string name="start_quiz">quiz</string>
+    <string name="quiz_download">Download</string>
     <string name="question">Question</string>
     <string name="top_10_high_scores">High Score</string>
+    <string name="str_next">Next</string>
+    <string name="str_previous">Previous</string>
+    <string name="score">Your Score</string>
+    <string name="finish">Finish</string>
+    <string name="str_enter_name">Enter your name</string>
+    <string name="save">Save</string>
+    <string name="str_no_data_found">No data found</string>
 </resources>
