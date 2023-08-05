@@ -36,7 +36,7 @@ import algonquin.cst2335.finalproject.databinding.FlightdetailsfragmentBinding;
         binding.destinationText.setText(selected.destination);
         binding.gateText.setText(selected.gate);
         binding.delayText.setText(selected.delay);
-        binding.TerminalText.setText(selected.Terminal);
+        binding.terminalText.setText(selected.Terminal);
         binding.databaseid.setText("ID="+selected.id);
 
 //            binding.saveData.setOnClickListener(clk -> {

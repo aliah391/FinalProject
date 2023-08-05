@@ -37,11 +37,12 @@ public class Aviation extends AppCompatActivity {
     AviationBinding binding;
     AviationViewModel Amodel;
     private ArrayList<NameOfflight>details = new ArrayList<>();
+    private ArrayList<NameOfflight> flightDetails = new ArrayList<>();
     public Aviation(){}
     MyRowHolder holder;
     private RequestQueue queue = null;
     private RecyclerView.Adapter<MyRowHolder> myAdapter;
-    ArrayList<String> flightinfo= new ArrayList<>();
+   // ArrayList<String> flightinfo= new ArrayList<>();
 
     @Override
     protected void onCreate( Bundle savedInstanceState) {
@@ -51,20 +52,29 @@ public class Aviation extends AppCompatActivity {
 
         binding = AviationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
         Amodel = new ViewModelProvider(this).get(AviationViewModel.class);
+
         details = Amodel.details.getValue();
+        flightDetails = Amodel.flightDetails.getValue();
+
+
         if(details == null){
             Amodel.details.postValue(details = new ArrayList<NameOfflight>());
         }
+        if(flightDetails==null){
+            Amodel.flightDetails.postValue(flightDetails = new ArrayList<NameOfflight>());
+        }
 
-Amodel.selectedMessage.observe(this,(newSelection)->{
-   FlightDetailsFragment flightfragment = new FlightDetailsFragment(newSelection);
-    FragmentManager fMgr = getSupportFragmentManager();
-    FragmentTransaction tx = fMgr.beginTransaction();
-    tx.add(R.id.fragmentContainer, flightfragment);
-    tx.addToBackStack("");
-    tx.commit();
-        });
+
+        Amodel.selectedMessage.observe(this,(newSelection)->{
+           FlightDetailsFragment flightfragment = new FlightDetailsFragment(newSelection);
+            FragmentManager fMgr = getSupportFragmentManager();
+            FragmentTransaction tx = fMgr.beginTransaction();
+            tx.add(R.id.fragmentContainer, flightfragment);
+            tx.addToBackStack("");
+            tx.commit();
+                });
 
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -88,44 +98,34 @@ Amodel.selectedMessage.observe(this,(newSelection)->{
 
                         JSONObject destination = position.getJSONObject("arrival");
                         String arrival =  destination.getString("airport");
-                        String arrivalTerminal = destination.getString("terminal");
-                        String arrivalGate = destination.getString("gate");
-                        String arrivalDelay = destination.getString("delay");
+                        JSONObject departure = position.getJSONObject("departure");
+                        String Terminal = departure.getString("terminal");
+                        String Gate = departure.getString("gate");
+                        String Delay = departure.getString("delay");
 
                                 if (flightName.equalsIgnoreCase("empty")){
                                     flightName ="Not available";
                                     NameOfflight fName = new NameOfflight(flightName);
                                     details.add(fName);
+                                    NameOfflight moredetails= new NameOfflight(flightName, arrival, Terminal, Gate, Delay);
+                                    flightDetails.add(moredetails);
                                 }else{
                                     NameOfflight fName = new NameOfflight(flightName);
                                     details.add(fName);
+                                    NameOfflight moredetails= new NameOfflight(flightName, arrival, Terminal, Gate, Delay);
+                                    flightDetails.add(moredetails);
                                 }
-
-
-                                flightinfo.add(arrival);
-                                flightinfo.add(arrivalDelay);
-                                flightinfo.add(arrivalTerminal);
-                                flightinfo.add(arrivalDelay);
-
-                                myAdapter.notifyDataSetChanged();
+                               myAdapter.notifyDataSetChanged();
                                 myAdapter.notifyItemInserted(details.size() - 1);
-
                             }
-
-
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                    },
-                    (error) -> {
+                    }, (error) -> {
                         Log.e("Aviation", "Error retrieving Json response:"+error.toString());
             });
             request.setRetryPolicy(new DefaultRetryPolicy(10000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-
             queue.add(request);
-
-
         });
 
 
@@ -161,13 +161,17 @@ Amodel.selectedMessage.observe(this,(newSelection)->{
  class MyRowHolder extends RecyclerView.ViewHolder{
 
         TextView nameOfFlight;
+
         public MyRowHolder(View itemview){
             super(itemview);
             nameOfFlight = itemView.findViewById(R.id.nameofflight);
             itemView.setOnClickListener(click ->{
                 int position = getAbsoluteAdapterPosition();
                 NameOfflight selected = details.get(position);
+                NameOfflight info = flightDetails.get(position);
+
                 Amodel.selectedMessage.postValue(selected);
+                Amodel.selectedMessage.postValue(info);
             });
         }
 

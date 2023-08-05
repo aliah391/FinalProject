@@ -9,11 +9,21 @@ public class NameOfflight {
     public NameOfflight(String nof){
         flightName=nof;
     }
+
+    public  NameOfflight( String nof,String D, String t, String g, String d){
+        flightName=nof;
+        destination=D;
+        Terminal=t;
+        gate=g;
+        delay=d;
+
+    }
+
     public String getFlightName(){return flightName;}
-    public String getDelay(){return delay;}
-    public String getGate(){return gate;}
-    public String getTerminal(){return Terminal;}
-    public String getDestination(){return destination;}
+//    public String getDelay(String d){return delay=d;}
+//    public String getGate(String g){return gate=g;}
+//    public String getTerminal(String t){return Terminal=t;}
+//    public String getDestination(String D){return destination=D;}
 
 
 }
