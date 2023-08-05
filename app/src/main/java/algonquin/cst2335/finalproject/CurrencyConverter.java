@@ -15,24 +15,29 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import algonquin.cst2335.finalproject.databinding.ActivityCurrencyConverterBinding;
+
 /**
  * Activity for converting currencies. Allows users to convert between different
  * currencies and view/save their conversions. Uses an API to perform the currency
@@ -107,14 +112,11 @@ public class CurrencyConverter extends AppCompatActivity {
 
     /**
      * This method initializes the activity when it is first created.
-     *
      * It inflates the activity's layout, sets up shared preferences, and configures the action bar.
      * It also initializes a ViewModel for storing conversion queries.
-     *
      * The method then sets up a RecyclerView for displaying saved conversions. This involves
      * initializing a LinearLayoutManager and a SavedConversionsAdapter, and associating them
      * with the RecyclerView.
-     *
      * Finally, the method finds and keeps references to various other UI elements, including
      * EditTexts, Spinners, Buttons, and a TextView. These references will be used in other parts of
      * the application to read user input and control the display.
@@ -153,14 +155,13 @@ public class CurrencyConverter extends AppCompatActivity {
         saveButton = findViewById(R.id.button_save);
         viewSavedButton = findViewById(R.id.button_view_saved);
 
-        /**
+        /*
          * This block initializes a list of different currencies, where each currency is represented
          * as a `Currency` object. The `Currency` object takes two arguments: the currency code
          * and the corresponding description. Each currency is added to the list of currencies.
          * For instance, "AUD" stands for Australian Dollar, "BRL" for Brazilian Real, "CAD" for
          * Canadian Dollar, "CHF" for Swiss Franc, and so on. The descriptions for each currency
          * are fetched from the string resources.
-         *
          * Here is the list of all the currencies being added:
          * "AUD" - Australian Dollar
          * "BRL" - Brazilian Real
@@ -219,7 +220,7 @@ public class CurrencyConverter extends AppCompatActivity {
         currencies.add(new Currency("VND", getResources().getString(R.string.vnd_description)));
         currencies.add(new Currency("ZAR", getResources().getString(R.string.zar_description)));
 
-        /**
+        /*
          * This method initializes an ArrayAdapter with the list of Currency objects, and sets this adapter
          * on the "from" and "to" currency Spinners. It sets onClickListeners on the "convert", "save", and
          * "view saved" buttons. It also retrieves and sets the previously saved amount from shared
@@ -229,7 +230,7 @@ public class CurrencyConverter extends AppCompatActivity {
         fromCurrencySpinner.setAdapter(spinnerAdapter);
         toCurrencySpinner.setAdapter(spinnerAdapter);
 
-        /**
+        /*
          * This method is triggered when the "convert" button is clicked. It invokes the method to convert
          * the currency based on the values selected in the "from" and "to" currency Spinners and the amount
          * entered in the EditText.
@@ -241,7 +242,7 @@ public class CurrencyConverter extends AppCompatActivity {
             }
         });
 
-        /**
+        /*
          * This method is triggered when the "save" button is clicked. If a conversion has been done, it
          * saves the conversion to the database via the ViewModel. Otherwise, it shows a Toast message
          * indicating that there is no conversion to save.
@@ -259,7 +260,7 @@ public class CurrencyConverter extends AppCompatActivity {
             }
         });
 
-        /**
+        /*
          * This method is triggered when the "view saved" button is clicked. It starts the
          * SavedConversionsActivity to display the list of saved conversions.
          */
@@ -275,28 +276,25 @@ public class CurrencyConverter extends AppCompatActivity {
         String savedAmount = sharedPreferences.getString("amount", "");
         amountEditText.setText(savedAmount);
     }
+
     /**
      * This method initiates a currency conversion operation. It first extracts the user's input
      * values from the user interface, including the amount to be converted and the source and target
      * currencies. It then constructs a URL to make a GET request to the currency conversion API.
-     *
      * Upon receiving a response from the API, the method calculates the converted amount by
      * multiplying the original amount by the conversion rate retrieved from the API. The converted
      * amount is then displayed in the result TextView.
-     *
      * If an error occurs during the API call, the error is logged.
-     *
      * After the conversion, the method saves the last conversion and the entered amount to shared
      * preferences for potential future use.
-     *
      * This method uses the Volley library to handle the HTTP request and response.
      */
     private void convertCurrency() {
         Log.d("CurrencyConverter", "Entered convertCurrency()");
 
         String amount = amountEditText.getText().toString();
-        String fromCurrency = ((Currency)fromCurrencySpinner.getSelectedItem()).getCode();
-        String toCurrency = ((Currency)toCurrencySpinner.getSelectedItem()).getCode();
+        String fromCurrency = ((Currency) fromCurrencySpinner.getSelectedItem()).getCode();
+        String toCurrency = ((Currency) toCurrencySpinner.getSelectedItem()).getCode();
 
         String url = "https://api.getgeoapi.com/v2/currency/convert?format=json&from="
                 + fromCurrency + "&to=" + toCurrency + "&amount=" + amount + "&api_key=bc8f732a47c2574bc2dac6ef67c7833c9ef17882&format=json";
@@ -339,6 +337,7 @@ public class CurrencyConverter extends AppCompatActivity {
 
     /**
      * This method inflates the menu for the currency converter activity.
+     *
      * @param menu The options menu in which items are placed
      * @return boolean Return true for the menu to be displayed
      */
@@ -352,6 +351,7 @@ public class CurrencyConverter extends AppCompatActivity {
     /**
      * This method handles menu item clicks. If the "help" option is selected, it shows a help dialog.
      * If the "back to main menu" option is selected, it navigates to the main activity.
+     *
      * @param item The menu item that was selected
      * @return boolean Return false to allow normal menu processing to proceed, true to consume it here
      */
@@ -362,7 +362,7 @@ public class CurrencyConverter extends AppCompatActivity {
             showHelpDialog();
             return true;
         } else if (id == R.id.back_main_menu) {
-            // здесь перейдите на главный экран
+
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             return true;

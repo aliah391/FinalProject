@@ -18,18 +18,18 @@
         android:id="@+id/editText_amount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/enter_amount"
-        android:inputType="numberDecimal"
         android:layout_marginTop="25dp"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="16dp"
+        android:hint="@string/enter_amount"
+        android:inputType="numberDecimal" />
 
     <TextView
         android:id="@+id/textView_from_currency_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/source_currency"
         android:layout_marginBottom="8dp"
-        android:textSize="20dp"/>
+        android:text="@string/source_currency"
+        android:textSize="20dp" />
 
     <Spinner
         android:id="@+id/spinner_from_currency"
@@ -41,8 +41,8 @@
         android:id="@+id/textView_to_currency_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/destination_currency"
         android:layout_marginBottom="8dp"
+        android:text="@string/destination_currency"
         android:textSize="20dp" />
 
     <Spinner
@@ -55,33 +55,33 @@
         android:id="@+id/button_convert"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/convert"
         android:layout_marginBottom="16dp"
+        android:text="@string/convert"
         android:textSize="18dp" />
 
     <TextView
         android:id="@+id/textView_result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/result"
-        tools:text="Result: "
         android:layout_marginBottom="16dp"
-        android:textSize="20dp" />
+        android:text="@string/result"
+        android:textSize="20dp"
+        tools:text="Result: " />
 
     <Button
         android:id="@+id/button_save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/save_conversion"
         android:layout_marginBottom="16dp"
-        android:textSize="18dp"/>
+        android:text="@string/save_conversion"
+        android:textSize="18dp" />
 
     <Button
         android:id="@+id/button_view_saved"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/view_saved_conversions"
-        android:textSize="18dp"/>
+        android:textSize="18dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/my_recycler_view"

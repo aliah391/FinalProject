@@ -42,9 +42,9 @@ public class ConversionQuery {
      * Constructs a new ConversionQuery with specified values.
      *
      * @param fromCurrency The original currency of the amount.
-     * @param toCurrency The currency to which the amount is converted.
-     * @param amount The amount in the original currency.
-     * @param result The resultant amount in the target currency.
+     * @param toCurrency   The currency to which the amount is converted.
+     * @param amount       The amount in the original currency.
+     * @param result       The resultant amount in the target currency.
      */
     public ConversionQuery(String fromCurrency, String toCurrency, double amount, double result) {
         this.fromCurrency = fromCurrency;

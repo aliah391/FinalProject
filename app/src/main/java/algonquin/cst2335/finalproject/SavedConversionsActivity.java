@@ -28,8 +28,8 @@ public class SavedConversionsActivity extends AppCompatActivity {
      * sets up the RecyclerView and its adapter. Also handles click events on items in the RecyclerView.
      *
      * @param savedInstanceState If the activity is being re-initialized after previously being
-     *     shut down then this Bundle contains the data it most recently supplied in onSaveInstanceState(Bundle).
-     *     Note: Otherwise it is null.
+     *                           shut down then this Bundle contains the data it most recently supplied in onSaveInstanceState(Bundle).
+     *                           Note: Otherwise it is null.
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
