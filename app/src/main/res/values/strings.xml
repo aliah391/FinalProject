@@ -1,5 +1,38 @@
 <resources>
+
+    <string name="app_name">My Application</string>
+    <string name="describe_image_here">Description of the image</string>
+    <string name="save">Save Image</string>
+    <string name="bear_image_button">Bear Image Button</string>
+    <string name="enter_width">Enter Width</string>
+    <string name="enter_height">Enter Height</string>
+    <string name="generate_image">Generate Image</string>
+    <string name="show_saved_images">Show Saved Images</string>
+    <string name="toast_message_1">Please enter width and height</string>
+    <string name="toast_message_2">Width and height must be positive numbers</string>
+    <string name="toast_message_3">Image is being generated...</string>
+    <string name="toast_message_4">Opening saved images...</string>
+    <string name="toast_message_5">Saved images loaded</string>
+    <string name="dialog_title">Delete image?</string>
+    <string name="dialog_message">Do you want to delete this image?</string>
+    <string name="dialog_positive">Yes</string>
+    <string name="dialog_negative">No</string>
+    <string name="snackbar_message">Image deleted successfully</string>
+    <string name="dialog_message_1">Do you want to save this image?</string>
+    <string name="snackbar_message_1">Image saved successfully</string>
+    <string name="snackbar_saved_images_loaded">Saved images loaded</string>
+    <string name="snackbar_message_2">Failed to load image</string>
+
+    <string name="action_help">Help</string>
+    <string name="help_title">Help</string>
+    <string name="help_message_image_activity">This is ImageActivity. Here you can view and save images with specified dimensions.</string>
+
+    <string name="help_message_new_activity">This is NewActivity. Here you can specify the dimensions of the image to generate.</string>
+
+    <string name="help_message_saved_images_activity">This is SavedImagesActivity. Here you can view and delete your saved images.</string>
+
     <string name="app_name">FinalProject</string>
+
     <string name="ediText">Enter airport code</string>
     <string name="name_of_flight">Name of airline</string>
     <string name="destination">Destination</string>
@@ -8,4 +41,22 @@
     <string name="gate">The planes location</string>
     <string name="aviationbtn">Aviation Button</string>
     <string name="Click">Press here</string>
+  
+    <string name="select_a_topic">Select quiz topic</string>
+    <string name="select_topic_prompt">"topic "</string>
+    <string name="select_the_number_of_questions">Number of question</string>
+    <string name="enter_the_number_of_questions">Enter the no. of Questions</string>
+    <string name="start_quiz">quiz</string>
+    <string name="quiz_download">Download</string>
+    <string name="question">Question</string>
+    <string name="top_10_high_scores">High Score</string>
+    <string name="str_next">Next</string>
+    <string name="str_previous">Previous</string>
+    <string name="score">Your Score</string>
+    <string name="finish">Finish</string>
+    <string name="str_enter_name">Enter your name</string>
+    <string name="save">Save</string>
+    <string name="str_no_data_found">No data found</string>
+
 </resources>
+
