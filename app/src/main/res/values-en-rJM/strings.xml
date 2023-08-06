@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">FinalProject</string>
+    <string name="app_name">Aviation</string>
     <string name="ediText">Aviation Btn</string>
     <string name="name_of_flight">Plane name</string>
 

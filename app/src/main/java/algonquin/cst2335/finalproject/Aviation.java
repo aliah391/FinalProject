@@ -1,5 +1,8 @@
 package algonquin.cst2335.finalproject;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -7,14 +10,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -28,7 +29,6 @@ import org.json.JSONObject;
 
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -37,26 +37,65 @@ import algonquin.cst2335.finalproject.databinding.NameofflightBinding;
 
 
 public class Aviation extends AppCompatActivity {
+    /**
+     * Accessing the xml file
+     */
     AviationBinding binding;
+    /**
+     * Accessing the View model for the aviation app
+     */
     AviationViewModel Amodel;
+    /**
+     * Allows for access of the flight database class
+     */
     FlightDatabase fd;
+    /**
+     * Allows access of the Flight DAO interface
+     */
     FlightDAO fDAO;
+    /**
+     *Creates an array List of type NameOfflight
+     */
     private ArrayList<NameOfflight>details = new ArrayList<>();
+    /**
+     * Creates an array list of type Nameofflight
+     */
     private ArrayList<NameOfflight> flightDetails = new ArrayList<>();
-    public Aviation(){}
-    MyRowHolder holder;
-    private RequestQueue queue = null;
-    private RecyclerView.Adapter<MyRowHolder> myAdapter;
-   // ArrayList<String> flightinfo= new ArrayList<>();
 
+    /**
+     * No-args constructor allows for the implementation of of the class
+     */
+    public Aviation(){}
+
+    /**
+     * Allows access to the MyRowholder class
+     */
+    MyRowHolder holder;
+    /**
+     * Instantiate the ResquestQueue class
+     */
+    private RequestQueue queue = null;
+    /**
+     * Instantiate a recycle view of type MyRowHolder
+     */
+    private RecyclerView.Adapter<MyRowHolder> myAdapter;
+    SharedPreferences prefs;
+    /***
+     * This method binds the xml to the java and carries out different actions based on the
+     * occurence of events.The method implements a  fragment, JSON parsing, arrays and recycle view.
+     * Together all elemnts creat an application that allows for the data to be requested and viewed.
+     * @param savedInstanceState If the activity is being re-initialized after
+     *     previously being shut down then this Bundle contains the data it most
+     *     recently supplied in {@link #onSaveInstanceState}.
+     *
+     */
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         queue = Volley.newRequestQueue(this);
 
-         fd = Room.databaseBuilder(getApplicationContext(), FlightDatabase.class, "FlightDetails").build();
-        fDAO=fd.flightDAO();
+
 
         binding = AviationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -65,7 +104,6 @@ public class Aviation extends AppCompatActivity {
 
         details = Amodel.details.getValue();
         flightDetails = Amodel.flightDetails.getValue();
-
 
         if(details == null){
             Amodel.details.postValue(details = new ArrayList<NameOfflight>());
@@ -84,10 +122,9 @@ public class Aviation extends AppCompatActivity {
             tx.commit();
                 });
 
-//        Executor thread = Executors.newSingleThreadExecutor();
-//        thread.execute({
-//
-//        });
+prefs =getSharedPreferences("Aviation", Context.MODE_PRIVATE);
+String storedAirportCode = prefs.getString("AirprtCode","");
+binding.airportCode.setText(storedAirportCode);
 
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -95,6 +132,9 @@ public class Aviation extends AppCompatActivity {
 
             String airportCode = binding.airportCode.getText().toString();
             String stringURL = "http://api.aviationstack.com/v1/flights?access_key=d88afd4e913c4d7e46737a949c4c94ec&dep_iata=" + URLEncoder.encode(airportCode);
+            SharedPreferences.Editor editor= prefs.edit();
+            editor.putString("AirportCode", airportCode);
+            editor.apply();
 
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, stringURL, null,
                     (response) -> {
@@ -146,11 +186,21 @@ public class Aviation extends AppCompatActivity {
         binding.recyclerView.setAdapter(myAdapter = new RecyclerView.Adapter<MyRowHolder>() {
             @NonNull
             @Override
+            /**
+             * Method links to the xml file that formats the data being displayed once clicked
+             * @return a binding to the xml file
+             */
             public MyRowHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 NameofflightBinding binding = NameofflightBinding.inflate(getLayoutInflater());
                 return new MyRowHolder(binding.getRoot());
             }
 
+            /**
+             * Method sets and displays text in the recycle view
+             * @param holder   The ViewHolder which should be updated to represent the contents of the
+             *                 item at the given position in the data set.
+             * @param position The position of the item within the adapter's data set.
+             */
             @Override
             public void onBindViewHolder(@NonNull MyRowHolder holder, int position) {
                 holder.nameOfFlight.setText("");//set text here
@@ -160,21 +210,41 @@ public class Aviation extends AppCompatActivity {
 
             }
 
+            /**
+             * Method returns the size of the array storing the flight name
+             * @return the size of the array storing the flight name
+             */
             @Override
             public int getItemCount() {
                 return details.size();
             }
 
+            /**
+             * Method returns the absolute position in the query
+             * @param position position to query
+             * @return the absolute position
+             */
             @Override
             public int getItemViewType(int position) {
                 return 0;
             }
         });
         }
- class MyRowHolder extends RecyclerView.ViewHolder{
 
+    /**
+     * Class sets the recycle view
+     */
+    class MyRowHolder extends RecyclerView.ViewHolder{
+        /**
+         * Accesses a textview item by giving it a name to be referred to
+         */
         TextView nameOfFlight;
 
+        /**
+         * The method accesses the an item usignthe id and allows actions to be done if the
+         * item is selected
+         * @param itemview
+         */
         public MyRowHolder(View itemview){
             super(itemview);
             nameOfFlight = itemView.findViewById(R.id.nameofflight);

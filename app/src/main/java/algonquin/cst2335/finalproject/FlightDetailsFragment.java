@@ -12,9 +12,11 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import androidx.room.Room;
 
 
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import algonquin.cst2335.finalproject.databinding.FlightdetailsfragmentBinding;
     public class FlightDetailsFragment extends Fragment {
@@ -38,12 +40,17 @@ import algonquin.cst2335.finalproject.databinding.FlightdetailsfragmentBinding;
         binding.delayText.setText(selected.delay);
         binding.terminalText.setText(selected.Terminal);
         binding.databaseid.setText("ID="+selected.id);
+            fdatabase = Room.databaseBuilder(getContext().getApplicationContext(), FlightDatabase.class, "database-name").build();
+            flightdao= fdatabase.flightDAO();
 
-//            binding.saveData.setOnClickListener(clk -> {
-//
-//               // fdatabase = Room.databaseBuilder(getContext().getApplicationContext(), FlightDatabase.class, "database-name").build();
-//               // flightdao= fdatabase.flightDAO();
-//            } );
+            binding.saveData.setOnClickListener(clk -> {
+                Executor thread1 = Executors.newSingleThreadExecutor();
+                thread1.execute(() ->{
+                    selected.id= flightdao.insertFlightDetails(selected);
+
+                });
+
+            } );
             return binding.getRoot();
 
         }

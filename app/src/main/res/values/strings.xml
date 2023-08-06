@@ -102,7 +102,7 @@
 
     <string name="help_message_saved_images_activity">This is SavedImagesActivity. Here you can view and delete your saved images.</string>
 
-    <string name="app_name">FinalProject</string>
+    <string name="app_name">Aviation</string>
 
     <string name="ediText">Enter airport code</string>
     <string name="name_of_flight">Name of airline</string>
