@@ -1,9 +1,17 @@
 package algonquin.cst2335.finalproject;
 
+
+
 import androidx.appcompat.app.AppCompatActivity;
+import android.app.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import algonquin.cst2335.finalproject.databinding.ActivityMainBinding;
 
@@ -39,6 +47,23 @@ public class MainActivity extends AppCompatActivity {
         binding.Currency.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, CurrencyConverter.class);
             startActivity(intent);
+
+
+        Button bearImageButton = findViewById(R.id.Bear_Image);
+        bearImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start new NewActivity
+                Intent intent = new Intent(MainActivity.this, NewActivity.class);
+                startActivity(intent);
+
+        binding.Trivia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,QuizStartActivity.class));
+
+            }
+
         });
     }
 }
