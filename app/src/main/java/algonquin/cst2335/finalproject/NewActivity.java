@@ -3,7 +3,6 @@ package algonquin.cst2335.finalproject;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,14 +12,28 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.google.android.material.snackbar.Snackbar;
 
+/**
+ * NewActivity is an activity class where users can input the width and height for a new image.
+ * The inputted dimensions are saved to SharedPreferences and used to start ImageActivity.
+ * This class also provides an option to view saved images in SavedImagesActivity.
+ *
+ * @author Nikita
+ * @version 1.0
+ * @since 2023-08-05
+ */
 public class NewActivity extends AppCompatActivity {
 
+    /**
+     * EditText field for entering image width.
+     */
     private EditText widthEditText;
-    private EditText heightEditText;
 
+    /**
+     * EditText field for entering image height.
+     */
+    private EditText heightEditText;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -37,6 +50,9 @@ public class NewActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Displays a help dialog with information about the activity.
+     */
     private void displayHelpDialog() {
         new AlertDialog.Builder(this)
                 .setTitle(R.string.help_title)
@@ -50,30 +66,24 @@ public class NewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new);
 
-
-
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-// Link the UI elements
+
         widthEditText = findViewById(R.id.widthEditText);
         heightEditText = findViewById(R.id.heightEditText);
         Button generateButton = findViewById(R.id.generateButton);
         Button showSavedImagesButton = findViewById(R.id.showSavedImagesButton);
 
-        // Load previously entered values from SharedPreferences
         SharedPreferences prefs = getSharedPreferences("ImagePrefs", MODE_PRIVATE);
         String savedWidth = prefs.getString("Width", "");
         String savedHeight = prefs.getString("Height", "");
 
-        // Set saved values to EditTexts
         widthEditText.setText(savedWidth);
         heightEditText.setText(savedHeight);
 
-        // OnClickListener for the generateButton
         generateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Validate input
                 String widthString = widthEditText.getText().toString();
                 String heightString = heightEditText.getText().toString();
 
@@ -90,17 +100,14 @@ public class NewActivity extends AppCompatActivity {
                     return;
                 }
 
-                // Save current entered values to SharedPreferences
                 SharedPreferences.Editor editor = prefs.edit();
                 editor.putString("Width", widthString);
                 editor.putString("Height", heightString);
                 editor.apply();
 
-                // Show Toast and Snackbar
                 Toast.makeText(NewActivity.this, getString(R.string.toast_message_3), Toast.LENGTH_SHORT).show();
                 Snackbar.make(v, "Image is being generated...", Snackbar.LENGTH_LONG).show();
 
-                // Start new ImageActivity
                 Intent intent = new Intent(NewActivity.this, ImageActivity.class);
                 intent.putExtra("Width", width);
                 intent.putExtra("Height", height);
@@ -108,17 +115,12 @@ public class NewActivity extends AppCompatActivity {
             }
         });
 
-        // OnClickListener for the showSavedImagesButton
         showSavedImagesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Show Toast and Snackbar
                 Toast.makeText(NewActivity.this, getString(R.string.toast_message_4), Toast.LENGTH_SHORT).show();
                 Snackbar.make(v, "Opening saved images...", Snackbar.LENGTH_LONG).show();
 
-
-
-                // Start new SavedImagesActivity
                 Intent intent = new Intent(NewActivity.this, SavedImagesActivity.class);
                 startActivity(intent);
             }

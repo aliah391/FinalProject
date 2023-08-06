@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".NewActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -11,47 +12,53 @@
         android:background="@color/colorPrimaryEnglish"
         android:elevation="4dp"/>
 
-    <EditText
-        android:id="@+id/widthEditText"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/enter_width"
-        android:inputType="number"
-        android:layout_below="@+id/my_toolbar"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="16dp" />
+        android:layout_below="@id/my_toolbar"
+        android:layout_margin="16dp"
+        app:cardElevation="8dp">
 
-    <EditText
-        android:id="@+id/heightEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/enter_height"
-        android:inputType="number"
-        android:layout_below="@id/widthEditText"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="16dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-    <Button
-        android:id="@+id/generateButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/generate_image"
-        android:background="@color/generateButtonColor"
-        android:layout_below="@id/heightEditText"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp" />
+            <EditText
+                android:id="@+id/widthEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_width"
+                android:inputType="number"
+                android:layout_marginBottom="16dp" />
 
-    <Button
-        android:id="@+id/showSavedImagesButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/show_saved_images"
-        android:background="@color/showSavedImagesButtonColor"
-        android:layout_below="@id/generateButton"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp" />
+            <EditText
+                android:id="@+id/heightEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_height"
+                android:inputType="number"
+                android:layout_marginBottom="16dp" />
+
+            <Button
+                android:id="@+id/generateButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/generate_image"
+                android:background="@color/generateButtonColor"
+                android:layout_marginBottom="16dp" />
+
+            <Button
+                android:id="@+id/showSavedImagesButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/show_saved_images"
+                android:background="@color/showSavedImagesButtonColor" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
 </RelativeLayout>

@@ -21,6 +21,15 @@ import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.snackbar.Snackbar;
 
+/**
+ * ImageActivity is an activity class responsible for displaying and saving images.
+ * The images are loaded from a URL using Volley and can be saved into Room database.
+ * This class also implements a menu with a 'Help' item.
+ *
+ * @author Nikita
+ * @version 1.0
+ * @since 2023-08-05
+ */
 public class ImageActivity extends AppCompatActivity {
 
     private String imageUrl;
@@ -28,18 +37,24 @@ public class ImageActivity extends AppCompatActivity {
     private int imageHeight;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu items for use in the action bar
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle presses on the action bar items
         if (item.getItemId() == R.id.action_help) {
             displayHelpDialog();
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
+    /**
+     * This method displays a help dialog with information about the current activity.
+     */
     private void displayHelpDialog() {
         new AlertDialog.Builder(this)
                 .setTitle(R.string.help_title)
@@ -84,6 +99,12 @@ public class ImageActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * This method uses Volley to load an image from a URL and display it in an ImageView.
+     *
+     * @param imageUrl The URL of the image to load.
+     * @param imageView The ImageView where the image will be displayed.
+     */
     private void loadImageWithVolley(String imageUrl, ImageView imageView) {
         ImageRequest imageRequest = new ImageRequest(imageUrl,
                 new Response.Listener<Bitmap>() {
@@ -108,6 +129,13 @@ public class ImageActivity extends AppCompatActivity {
 
 
 
+    /**
+     * This method saves an image to the Room database in a background thread.
+     *
+     * @param imageUrl The URL of the image.
+     * @param width The width of the image.
+     * @param height The height of the image.
+     */
     private void saveImageToDatabase(String imageUrl, int width, int height) {
         AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "images").build();
         SavedImagesDao dao = db.savedImagesDao();

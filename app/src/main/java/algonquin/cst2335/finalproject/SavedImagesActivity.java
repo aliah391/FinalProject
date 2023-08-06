@@ -1,6 +1,5 @@
 package algonquin.cst2335.finalproject;
 
-
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,11 +17,24 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * SavedImagesActivity is an activity that displays a list of saved images.
+ *
+ * @author Nikita
+ * @version 1.0
+ * @since 2023-08-05
+ */
 public class SavedImagesActivity extends AppCompatActivity implements ImageListAdapter.OnImageClickListener {
 
+    /**
+     * RecyclerView to display the list of images.
+     */
     private RecyclerView recyclerView;
-    private ImageListAdapter adapter;
 
+    /**
+     * Adapter to populate the RecyclerView.
+     */
+    private ImageListAdapter adapter;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -39,6 +51,9 @@ public class SavedImagesActivity extends AppCompatActivity implements ImageListA
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Displays a dialog with help information.
+     */
     private void displayHelpDialog() {
         new AlertDialog.Builder(this)
                 .setTitle(R.string.help_title)
@@ -80,6 +95,11 @@ public class SavedImagesActivity extends AppCompatActivity implements ImageListA
                 .show();
     }
 
+    /**
+     * Loads images from the database.
+     *
+     * @return A list of saved images.
+     */
     private List<SavedImages> loadImages() {
         AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "images").build();
         SavedImagesDao dao = db.savedImagesDao();
@@ -92,6 +112,11 @@ public class SavedImagesActivity extends AppCompatActivity implements ImageListA
         return savedImages;
     }
 
+    /**
+     * Deletes an image from the database.
+     *
+     * @param image The image to delete.
+     */
     private void deleteImage(SavedImages image) {
         AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "images").build();
         SavedImagesDao dao = db.savedImagesDao();
