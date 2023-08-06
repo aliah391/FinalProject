@@ -136,7 +136,7 @@ public class CurrencyConverter extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
+        getSupportActionBar().setTitle(getResources().getString(R.string.app_name_currency));
 
         queryViewModel = new ViewModelProvider(this).get(ConversionQueryViewModel.class);
 

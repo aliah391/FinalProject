@@ -15,11 +15,10 @@
     <string name="error_server">Ошибка сервера, повторите попытку позже.</string>
     <string name="error_invalid_input">Неверный ввод. Пожалуйста, проверьте введенные данные.</string>
     <string name="results">Результаты</string>
-    <string name="app_name">Конвертер Валют</string>
+    <string name="app_name_currency">Конвертер Валют</string>
     <string name="query">Запрос</string>
     <string name="converted_amount">Конвертированная сумма: %1$.2f</string>
     <string name="toast_no_conversion_to_save">Конвертация не сохранена</string>
-    <string name="action_help">Помощь</string>
     <string name="help_dialog_title">Помощь</string>
     <string name="help_dialog_message">
     Добро пожаловать в Конвертер Валют!\n
@@ -67,5 +66,6 @@
     <string name="gbp_description">Турецкая лира</string>
     <string name="usd_description">Доллар США</string>
     <string name="vnd_description">Вьетнамский донг</string>
+    <string name="action_help_currency">Помощь</string>
 
 </resources>

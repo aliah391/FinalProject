@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="app_name">Currency converter</string>
+    <string name="app_name_currency">Currency converter</string>
     <string name="enter_amount">Enter amount…</string>
     <string name="source_currency">Source Currency:</string>
     <string name="destination_currency">Destination Currency:</string>
@@ -26,7 +26,7 @@
     <string name="query">Query</string>
     <string name="results">Results</string>
     <string name="converted_amount">Converted Amount %1$.2f</string>
-    <string name="action_help">Help</string>
+    <string name="action_help_currency">Help</string>
     <string name="help_dialog_title">Help</string>
     <string name="help_dialog_message">
     Welcome to Currency Converter!\n
