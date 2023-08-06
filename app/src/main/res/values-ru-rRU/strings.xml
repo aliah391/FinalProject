@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="enter_amount">Введите сумму</string>
+    <string name="source_currency">Исходная валюта:</string>
+    <string name="destination_currency">Валюта назначения:</string>
+    <string name="convert">Конвертировать</string>
+    <string name="result">Результат</string>
+    <string name="save_conversion">Сохранить конвертацию</string>
+    <string name="view_saved_conversions">Просмотреть сохраненные конвертации</string>
+    <string name="title_saved_conversions">Сохранить конвертацию</string>
+    <string name="button_remove_query">Удалить запрос</string>
+    <string name="snackbar_query_removed">Запрос удален!</string>
+    <string name="snackbar_undo_removal">Отменить</string>
+    <string name="toast_conversion_saved">Конвертация успешно сохранена</string>
+    <string name="error_server">Ошибка сервера, повторите попытку позже.</string>
+    <string name="error_invalid_input">Неверный ввод. Пожалуйста, проверьте введенные данные.</string>
+    <string name="results">Результаты</string>
+    <string name="app_name">Конвертер Валют</string>
+    <string name="query">Запрос</string>
+    <string name="converted_amount">Конвертированная сумма: %1$.2f</string>
+    <string name="toast_no_conversion_to_save">Конвертация не сохранена</string>
+    <string name="action_help">Помощь</string>
+    <string name="help_dialog_title">Помощь</string>
+    <string name="help_dialog_message">
+    Добро пожаловать в Конвертер Валют!\n
+    \n
+    1. Введите в поле ввода сумму, которую вы хотите пересчитать.\n
+    2. Выберите валюту источника из выпадающего списка валют.\n
+    3. Выберите валюту назначения из раскрывающегося списка валют.\n
+    4. Нажмите кнопку Конвертировать, чтобы увидеть результат.\n
+    5. Если вы хотите сохранить конвертацию, нажмите кнопку Сохранить конвертацию.\n
+    6. Для просмотра сохраненных преобразований нажмите кнопку Просмотр сохраненных преобразований.\n
+    \n
+    Приятного использования!\n
+</string>
+    <string name="dialog_title_delete_conversion">Удалить конвертацию</string>
+    <string name="dialog_message_delete_conversion">Вы уверены, что хотите удалить эту конвертацию?</string>
+    <string name="toast_conversion_deleted">Конвертация удалена</string>
+    <string name="snackbar_conversion_deleted">Конвертация удалена</string>
+    <string name="snackbar_undo_action">ВОССТАНОВИТЬ</string>
+    <string name="toast_conversion_restored">Конвертация восстановлена</string>
+    <string name="back_main_menu">Возврат на основное меню</string>
+    <string name="aud_description">Австралийский доллар</string>
+    <string name="brl_description">Бразильский реал</string>
+    <string name="cad_description">Канадский доллар</string>
+    <string name="cny_description">Китайский юань</string>
+    <string name="eur_description">Евро</string>
+    <string name="hkd_description">Гонконгский доллар</string>
+    <string name="inr_description">Индийская рупия</string>
+    <string name="idr_description">Индонезийская рупия</string>
+    <string name="jpy_description">Японская йена</string>
+    <string name="myr_description">Малайзийский ринггит</string>
+    <string name="mxn_description">Мексиканское песо</string>
+    <string name="nzd_description">Новозеландский доллар</string>
+    <string name="nok_description">Норвежская крона</string>
+    <string name="pen_description">Перуанский новый соль</string>
+    <string name="rub_description">Российский рубль</string>
+    <string name="sar_description">Саудовский риял</string>
+    <string name="sgd_description">Сингапурский доллар</string>
+    <string name="zar_description">Южноафриканский рэнд</string>
+    <string name="krw_description">Южнокорейская вона</string>
+    <string name="sek_description">Шведская крона</string>
+    <string name="chf_description">Швейцарский франк</string>
+    <string name="twd_description">Новый тайваньский доллар</string>
+    <string name="thb_description">Тайский бат</string>
+    <string name="try_description">Турецкая лира</string>
+    <string name="gbp_description">Турецкая лира</string>
+    <string name="usd_description">Доллар США</string>
+    <string name="vnd_description">Вьетнамский донг</string>
+
+</resources>

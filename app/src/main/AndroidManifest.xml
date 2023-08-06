@@ -4,7 +4,6 @@
     package="algonquin.cst2335.finalproject">
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -25,13 +24,18 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".CurrencyConverter" />  <!-- Declare CurrencyConverter activity here -->
+        <activity android:name=".SavedConversionsActivity"/>
+    </application>
+
+</manifest>
+
+
 
 
         <activity android:name=".NewActivity" />
         <activity android:name=".ImageActivity" />
         <activity android:name=".SavedImagesActivity" />
-
-
         <activity android:name=".QuizStartActivity"/>
         <activity android:name=".QuizActivity"/>
         <activity android:name=".HighScoresActivity"/>
@@ -39,7 +43,6 @@
     </application>
 
 </manifest>
-
 
 
 
