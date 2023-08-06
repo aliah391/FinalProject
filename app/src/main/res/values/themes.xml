@@ -2,11 +2,15 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.FinalProject" parent="Theme.Material3.DayNight.NoActionBar">
 
-        <item name="colorPrimary">@color/generateButtonColor</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorAccent</item>
+        <item name="colorAccent">@color/colorAccent</item>
+           <item name="colorPrimary">@color/generateButtonColor</item>
         <item name="colorSecondary">@color/showSavedImagesButtonColor</item>
         <item name="android:statusBarColor">@color/colorPrimaryEnglish</item>
 
     </style>
+
 
     <style name="Theme.FinalProject" parent="Base.Theme.FinalProject" />
 </resources>

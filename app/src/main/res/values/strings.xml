@@ -1,5 +1,76 @@
 <resources>
 
+    <string name="app_name">Currency converter</string>
+    <string name="enter_amount">Enter amount…</string>
+    <string name="source_currency">Source Currency:</string>
+    <string name="destination_currency">Destination Currency:</string>
+    <string name="convert">Convert</string>
+    <string name="result">Result</string>
+    <string name="save_conversion">Save Conversion</string>
+    <string name="view_saved_conversions">View Saved Conversions</string>
+    <string name="title_saved_conversions">Saved Conversions</string>
+    <string name="button_remove_query">Remove Query</string>
+    <string name="snackbar_query_removed">Query removed!</string>
+    <string name="snackbar_undo_removal">Undo</string>
+    <string name="toast_conversion_saved">Conversion saved</string>
+    <string name="toast_no_conversion_to_save">No conversion to save</string>
+    <string name="dialog_title_delete_conversion">Delete Conversion</string>
+    <string name="dialog_message_delete_conversion">Are you sure you want to delete this conversion?</string>
+    <string name="toast_conversion_deleted">Conversion deleted</string>
+    <string name="snackbar_conversion_deleted">Conversion deleted</string>
+    <string name="snackbar_undo_action">UNDO</string>
+    <string name="toast_conversion_restored">Conversion restored</string>
+    <string name="back_main_menu">Main Menu</string>
+    <string name="error_server">Server error, please try again later.</string>
+    <string name="error_invalid_input">Invalid input. Please check your entries.</string>
+    <string name="query">Query</string>
+    <string name="results">Results</string>
+    <string name="converted_amount">Converted Amount %1$.2f</string>
+    <string name="action_help">Help</string>
+    <string name="help_dialog_title">Help</string>
+    <string name="help_dialog_message">
+    Welcome to Currency Converter!\n
+    \n
+    1. Enter the amount you wish to convert in the input field.\n
+    2. Select the source currency from the Source Currency dropdown list.\n
+    3. Select the destination currency from the Destination Currency dropdown list.\n
+    4. Click the Convert button to see the result.\n
+    5. If you wish to save the conversion, click the Save Conversion button.\n
+    6. To view saved conversions, click the View Saved Conversions button.\n
+    \n
+    Enjoy your usage!\n
+
+
+</string>
+    <string name="aud_description">Australian Dollar</string>
+    <string name="brl_description">Brazilian Real</string>
+    <string name="cad_description">Canadian Dollar</string>
+    <string name="cny_description">Chinese Renminbi</string>
+    <string name="eur_description">European Euro</string>
+    <string name="hkd_description">Hong Kong Dollar</string>
+    <string name="inr_description">Indian Rupee</string>
+    <string name="idr_description">Indonesian Rupiah</string>
+    <string name="jpy_description">Japanese Yen</string>
+    <string name="myr_description">Malaysian Ringgit</string>
+    <string name="mxn_description">Mexican Peso</string>
+    <string name="nzd_description">New Zealand Dollar</string>
+    <string name="nok_description">Norwegian Krone</string>
+    <string name="pen_description">Peruvian Nuevo Sol</string>
+    <string name="rub_description">Russian Ruble</string>
+    <string name="sar_description">Saudi Riyal</string>
+    <string name="sgd_description">Singapore Dollar</string>
+    <string name="zar_description">South African Rand</string>
+    <string name="krw_description">South Korean Won</string>
+    <string name="sek_description">Swedish Krona</string>
+    <string name="chf_description">Swiss Franc</string>
+    <string name="twd_description">Taiwanese Dollar</string>
+    <string name="thb_description">Thai Baht</string>
+    <string name="try_description">Turkish Lira</string>
+    <string name="gbp_description">UK Pound Sterling</string>
+    <string name="usd_description">US Dollar</string>
+    <string name="vnd_description">Vietnamese Dong</string>
+
+
     <string name="app_name">My Application</string>
     <string name="describe_image_here">Description of the image</string>
     <string name="save">Save Image</string>
