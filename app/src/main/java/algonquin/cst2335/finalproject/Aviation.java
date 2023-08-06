@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -28,6 +29,8 @@ import org.json.JSONObject;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import algonquin.cst2335.finalproject.databinding.AviationBinding;
 import algonquin.cst2335.finalproject.databinding.NameofflightBinding;
@@ -36,6 +39,8 @@ import algonquin.cst2335.finalproject.databinding.NameofflightBinding;
 public class Aviation extends AppCompatActivity {
     AviationBinding binding;
     AviationViewModel Amodel;
+    FlightDatabase fd;
+    FlightDAO fDAO;
     private ArrayList<NameOfflight>details = new ArrayList<>();
     private ArrayList<NameOfflight> flightDetails = new ArrayList<>();
     public Aviation(){}
@@ -49,6 +54,9 @@ public class Aviation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         queue = Volley.newRequestQueue(this);
+
+         fd = Room.databaseBuilder(getApplicationContext(), FlightDatabase.class, "FlightDetails").build();
+        fDAO=fd.flightDAO();
 
         binding = AviationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -75,6 +83,11 @@ public class Aviation extends AppCompatActivity {
             tx.addToBackStack("");
             tx.commit();
                 });
+
+//        Executor thread = Executors.newSingleThreadExecutor();
+//        thread.execute({
+//
+//        });
 
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
