@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<
     xmlns:tools="http://schemas.android.com/tools"
-    package="algonquin.cst2335.finalproject">
-    <uses-permission android:name="android.permission.INTERNET" />
+package="algonquin.cst2335.finalproject"
+>
+
+  
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -13,7 +17,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FinalProject"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity android:name=".Aviation"
+            android:exported="true"/>
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -26,13 +34,6 @@
 
         <activity android:name=".CurrencyConverter" />  <!-- Declare CurrencyConverter activity here -->
         <activity android:name=".SavedConversionsActivity"/>
-    </application>
-
-</manifest>
-
-
-
-
         <activity android:name=".NewActivity" />
         <activity android:name=".ImageActivity" />
         <activity android:name=".SavedImagesActivity" />

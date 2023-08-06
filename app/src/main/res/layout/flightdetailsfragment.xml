@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@android:color/background_dark">
+
+    <TextView
+        android:id="@+id/destination"
+        android:layout_width="159dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
+        android:text="@string/destination"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameOfFlightText" />
+
+    <TextView
+        android:id="@+id/nameText"
+        android:layout_width="159dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
+        android:text="@string/name_of_flight"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/gate"
+        android:layout_width="159dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
+        android:text="@string/gate"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/terminalText" />
+
+    <TextView
+        android:id="@+id/Terminal"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
+        android:text="@string/Terminal"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/destinationText" />
+
+    <TextView
+        android:id="@+id/nameOfFlightText"
+        android:layout_width="119dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:text="TextView"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameText" />
+
+    <TextView
+        android:id="@+id/destinationText"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/destination" />
+
+    <TextView
+        android:id="@+id/terminalText"
+        android:layout_width="119dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:text="TextView"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Terminal" />
+
+    <TextView
+        android:id="@+id/gateText"
+        android:layout_width="119dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:text="TextView"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gate" />
+
+    <TextView
+        android:id="@+id/delay"
+        android:layout_width="159dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
+        android:text="@string/delay"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gateText" />
+
+    <TextView
+        android:id="@+id/delayText"
+        android:layout_width="119dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="TextView"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/delay" />
+
+
+    <Button
+        android:id="@+id/saveData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:text="Save flight details"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/databaseid"
+        android:layout_width="130dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="database Number"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/delayText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

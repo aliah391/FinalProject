@@ -1,8 +1,5 @@
 package algonquin.cst2335.finalproject;
 
-
-
-import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 
 import android.content.Intent;
@@ -15,6 +12,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import algonquin.cst2335.finalproject.databinding.ActivityMainBinding;
 
+
+import algonquin.cst2335.finalproject.databinding.ActivityMainBinding;
+
+
 /**
  * The MainActivity is the main class for the application and extends AppCompatActivity.
  * <p>
@@ -22,8 +23,8 @@ import algonquin.cst2335.finalproject.databinding.ActivityMainBinding;
  * This activity sets up the view and binds the button click to start the CurrencyConverter activity.
  *
  * @author Alliah Smith, Irina Dontsova, Nikita Senkov, Loveleen LoveLeen
- * @version 1.0
- */
+ * @version 1.0*/
+ 
 public class MainActivity extends AppCompatActivity {
 
     /**
@@ -62,8 +63,54 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this,QuizStartActivity.class));
 
+
+
+            ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+            setContentView(binding.getRoot());
+           // setSupportActionBar(binding.toolbar);
+        binding.Aviation.setOnClickListener(click->{
+          Intent nextPage= new Intent(MainActivity.this, Aviation.class);
+          startActivity(nextPage);
+
+        });
+
+
+        }
+//
+//        @Override
+//        public boolean onCreateOptionsMenu(Menu menu) {
+//            super.onCreateOptionsMenu(menu);
+//            getMenuInflater().inflate(R.menu.my_menu , menu);
+//            return true;
+//        }
+//
+//        @Override
+//        public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//
+//
+//
+//            if(item.getItemId()==R.id.AviationItem) {
+//                String message =" Aviation";
+//                Toast.makeText(this, "You clicked"+ message, Toast.LENGTH_SHORT).show();
+//                Intent nextPage= new Intent(MainActivity.this, Aviation.class);
+//                startActivity(nextPage);
+//
+//            }
+//
+//
+//
+//
+//
+//            return true;
+//        }
+
             }
 
         });
     }
+
+
 }
+
+}
+
