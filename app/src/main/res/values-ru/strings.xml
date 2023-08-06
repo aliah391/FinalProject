@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Мое приложение</string>
+    <string name="describe_image_here">Описание изображения</string>
+    <string name="save">Сохранить изображение</string>
+    <string name="bear_image_button">Кнопка изображения медведя</string>
+    <string name="enter_width">Введите ширину</string>
+    <string name="enter_height">Введите высоту</string>
+    <string name="generate_image">Сгенерировать изображение</string>
+    <string name="show_saved_images">Показать сохраненные изображения</string>
+    <string name="toast_message_1">Пожалуйста, введите ширину и высоту</string>
+    <string name="toast_message_2">Ширина и высота должны быть положительными числами</string>
+    <string name="toast_message_3">Образ создается...</string>
+    <string name="toast_message_4">Открытие сохраненных изображений...</string>
+    <string name="toast_message_5">Сохраненные изображения загружены</string>
+    <string name="dialog_title">Удалить изображение?</string>
+    <string name="dialog_message">Вы хотите удалить это изображение?</string>
+    <string name="dialog_positive">Да</string>
+    <string name="dialog_negative">Нет</string>
+    <string name="snackbar_message">Изображение успешно удалено</string>
+    <string name="dialog_message_1">Вы хотите сохранить это изображение?</string>
+    <string name="snackbar_message_1">Изображение успешно сохранено</string>
+    <string name="snackbar_saved_images_loaded">Сохраненные изображения загружены</string>
+    <string name="snackbar_message_2">Не удалось загрузить изображение</string>
+    <string name="action_help">Помощь</string>
+    <string name="help_title">Помощь</string>
+    <string name="help_message_image_activity">Это ImageActivity. Здесь вы можете просматривать и сохранять изображения с заданными размерами.</string>
+
+    <string name="help_message_new_activity">Это NewActivity. Здесь вы можете указать размеры изображения для создания.</string>
+
+    <string name="help_message_saved_images_activity">Это SavedImagesActivity. Здесь вы можете просматривать и удалять сохраненные изображения.</string>
+</resources>

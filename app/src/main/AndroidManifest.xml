@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="algonquin.cst2335.finalproject">
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -21,6 +23,29 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".CurrencyConverter" />  <!-- Declare CurrencyConverter activity here -->
+        <activity android:name=".SavedConversionsActivity"/>
     </application>
 
 </manifest>
+
+
+
+
+        <activity android:name=".NewActivity" />
+        <activity android:name=".ImageActivity" />
+        <activity android:name=".SavedImagesActivity" />
+        <activity android:name=".QuizStartActivity"/>
+        <activity android:name=".QuizActivity"/>
+        <activity android:name=".HighScoresActivity"/>
+
+    </application>
+
+</manifest>
+
+
+
+
+
+

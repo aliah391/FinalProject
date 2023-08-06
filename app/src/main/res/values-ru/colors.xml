@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="generateButtonColor">#5967E4</color>
+    <color name="showSavedImagesButtonColor">#000000</color>
+    <color name="colorPrimaryEnglish">#EF7954</color>
+
+</resources>
