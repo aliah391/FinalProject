@@ -32,7 +32,7 @@ package="algonquin.cst2335.finalproject"
             </intent-filter>
         </activity>
 
-        <activity android:name=".CurrencyConverter" />  <!-- Declare CurrencyConverter activity here -->
+        <activity android:name=".CurrencyConverter" />  
         <activity android:name=".SavedConversionsActivity"/>
         <activity android:name=".NewActivity" />
         <activity android:name=".ImageActivity" />
