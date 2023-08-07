@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-<
     xmlns:tools="http://schemas.android.com/tools"
-package="algonquin.cst2335.finalproject"
->
+    package="algonquin.cst2335.finalproject">
 
-  
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -19,34 +16,29 @@ package="algonquin.cst2335.finalproject"
         android:theme="@style/Theme.FinalProject"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-        <activity android:name=".Aviation"
-            android:exported="true"/>
+
+        <activity
+            android:name=".Aviation"
+            android:exported="true" />
 
         <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".CurrencyConverter" />  
-        <activity android:name=".SavedConversionsActivity"/>
+        <activity android:name=".CurrencyConverter" />
+        <activity android:name=".SavedConversionsActivity" />
         <activity android:name=".NewActivity" />
         <activity android:name=".ImageActivity" />
         <activity android:name=".SavedImagesActivity" />
-        <activity android:name=".QuizStartActivity"/>
-        <activity android:name=".QuizActivity"/>
-        <activity android:name=".HighScoresActivity"/>
+        <activity android:name=".QuizStartActivity" />
+        <activity android:name=".QuizActivity" />
+        <activity android:name=".HighScoresActivity" />
 
     </application>
 
 </manifest>
-
-
-
-
-
-
