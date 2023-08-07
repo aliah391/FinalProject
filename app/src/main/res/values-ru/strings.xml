@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">Мое приложение</string>
+    <string name="app_name_bear">Мое приложение</string>
     <string name="describe_image_here">Описание изображения</string>
-    <string name="save">Сохранить изображение</string>
+    <string name="save_bear">Сохранить изображение</string>
     <string name="bear_image_button">Кнопка изображения медведя</string>
     <string name="enter_width">Введите ширину</string>
     <string name="enter_height">Введите высоту</string>
@@ -21,7 +21,7 @@
     <string name="snackbar_message_1">Изображение успешно сохранено</string>
     <string name="snackbar_saved_images_loaded">Сохраненные изображения загружены</string>
     <string name="snackbar_message_2">Не удалось загрузить изображение</string>
-    <string name="action_help">Помощь</string>
+    <string name="action_help_bear">Помощь</string>
     <string name="help_title">Помощь</string>
     <string name="help_message_image_activity">Это ImageActivity. Здесь вы можете просматривать и сохранять изображения с заданными размерами.</string>
 
