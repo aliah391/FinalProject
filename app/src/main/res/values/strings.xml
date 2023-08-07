@@ -71,9 +71,9 @@
     <string name="vnd_description">Vietnamese Dong</string>
 
 
-    <string name="app_name">My Application</string>
+    <string name="app_name_bear">My Application</string>
     <string name="describe_image_here">Description of the image</string>
-    <string name="save">Save Image</string>
+    <string name="save_bear">Save Image</string>
     <string name="bear_image_button">Bear Image Button</string>
     <string name="enter_width">Enter Width</string>
     <string name="enter_height">Enter Height</string>
@@ -94,7 +94,7 @@
     <string name="snackbar_saved_images_loaded">Saved images loaded</string>
     <string name="snackbar_message_2">Failed to load image</string>
 
-    <string name="action_help">Help</string>
+    <string name="action_help_bear">Help</string>
     <string name="help_title">Help</string>
     <string name="help_message_image_activity">This is ImageActivity. Here you can view and save images with specified dimensions.</string>
 
