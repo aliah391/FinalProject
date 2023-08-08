@@ -14,6 +14,9 @@ import algonquin.cst2335.finalproject.room.MyDatabase;
 import algonquin.cst2335.finalproject.room.ScoreDatabase;
 import algonquin.cst2335.finalproject.room.ScoreEntity;
 
+/**
+ * Activity to display high scores.
+ */
 public class HighScoresActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ScoreDatabase scoreDatabase;
@@ -27,6 +30,9 @@ public class HighScoresActivity extends AppCompatActivity {
         initialise();
     }
 
+    /**
+     * Initialize the activity components and UI.
+     */
     private void initialise() {
         tvNoDataFound = findViewById(R.id.tvNoDataFound);
         scoreDatabase = MyDatabase.getInstance(getApplicationContext());
@@ -43,4 +49,3 @@ public class HighScoresActivity extends AppCompatActivity {
     }
 
 }
-

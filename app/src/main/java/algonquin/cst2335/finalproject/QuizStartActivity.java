@@ -13,7 +13,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 
 import java.util.List;
-
+/**
+ * This activity allows the user to start a quiz by selecting a topic and the number of questions.
+ * It also provides options to download quiz questions and view high scores.
+ */
 public class QuizStartActivity extends AppCompatActivity {
     private QuizViewModel quizViewModel;
     private final int[] categoryIds = {
@@ -29,7 +32,9 @@ public class QuizStartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_quiz_start);
         initialise();
     }
-
+    /**
+     * Initializes the QuizStartActivity by setting up UI elements and listeners.
+     */
     private void initialise() {
         quizViewModel = new QuizViewModel();
         spinnerTopic = findViewById(R.id.spinnerTopic);
@@ -79,7 +84,11 @@ public class QuizStartActivity extends AppCompatActivity {
             }
         });
     }
-
+    /**
+     * Validates user input before starting the quiz download process.
+     *
+     * @return True if the input is valid, false otherwise.
+     */
     private boolean isValid() {
         if (etNoOfQuestion.getText().toString().trim().isEmpty()) {
             Toast.makeText(QuizStartActivity.this, "Please enter no of questions", Toast.LENGTH_LONG).show();

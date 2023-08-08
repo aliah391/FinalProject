@@ -19,12 +19,31 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The interface defining methods for downloading quiz questions and providing a LiveData stream
+ * of question data.
+ */
 interface ApiInterface {
+    /**
+     * Download quiz questions from the specified category and with the given count.
+     *
+     * @param context The application context.
+     * @param categoryId The category ID for the quiz questions.
+     * @param count The number of questions to download.
+     */
     void downloadQuiz(Context context, String categoryId, String count);
 
+    /**
+     * Get a LiveData stream of the list of quiz question models.
+     *
+     * @return A LiveData object containing the list of quiz question models.
+     */
     MutableLiveData<List<QuestionModel>> getQuestionListLiveData();
 }
 
+/**
+ * Implementation of the ApiInterface for downloading quiz questions from an API.
+ */
 class ApiInterfaceImpl implements ApiInterface {
     private final MutableLiveData<List<QuestionModel>> questionListLiveData = new MutableLiveData<>();
 
@@ -35,15 +54,21 @@ class ApiInterfaceImpl implements ApiInterface {
 
     @Override
     public void downloadQuiz(Context context, String categoryId, String count) {
+        // Construct the URL for API request
         @SuppressLint("DefaultLocale") String Url = String.format("https://opentdb.com/api.php?amount=%s&category=%s&type=multiple", count, categoryId);
         Log.e(">>>>", "Url ::" + Url);
+
+        // Create a request queue using Volley
         RequestQueue requestQueue = Volley.newRequestQueue(context);
+
+        // Create a StringRequest for API request
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.e(">>>>>", "onResponse ::\n" + response);
                 ArrayList<QuestionModel> questionModels = new ArrayList<QuestionModel>();
                 try {
+                    // Parse the JSON response
                     JSONObject jsonObject = new JSONObject(response);
                     int responseCode = jsonObject.optInt("response_code");
                     JSONArray resultArray = jsonObject.optJSONArray("results");
@@ -57,7 +82,7 @@ class ApiInterfaceImpl implements ApiInterface {
                         questionModel.correct_answer = object.getString("correct_answer");
                         JSONArray jsonArray = object.getJSONArray("incorrect_answers");
                         ArrayList<String> stringArrayList = new ArrayList<>();
-                        //Checking whether the JSON array has some value or not
+                        // Checking whether the JSON array has some value or not
                         for (int j = 0; j < jsonArray.length(); j++) {
                             stringArrayList.add(jsonArray.optString(j));
                         }
@@ -76,7 +101,7 @@ class ApiInterfaceImpl implements ApiInterface {
                 Log.e(">>>>>", "onErrorResponse ::" + error.toString());
             }
         });
+        // Add the request to the request queue
         requestQueue.add(stringRequest);
     }
-
 }

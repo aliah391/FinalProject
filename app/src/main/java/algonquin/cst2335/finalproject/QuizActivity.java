@@ -20,7 +20,10 @@ import java.util.List;
 import algonquin.cst2335.finalproject.room.MyDatabase;
 import algonquin.cst2335.finalproject.room.ScoreDatabase;
 import algonquin.cst2335.finalproject.room.ScoreEntity;
-
+/**
+ * This activity displays a quiz with questions and options for the user to answer.
+ * The user's score is calculated and can be saved to a database.
+ */
 public class QuizActivity extends AppCompatActivity {
     private String categoryId;
     private TextView txtQuestion;
@@ -38,8 +41,13 @@ public class QuizActivity extends AppCompatActivity {
         setContentView(R.layout.activity_quiz);
         initialise();
     }
-
+    /**
+     * Initializes the QuizActivity by setting up UI elements and listeners.
+     */
     private void initialise() {
+        // Initialize database and retrieve question data
+        // Initialize UI components and set click listeners
+        // Load question data and display the first question
         database = MyDatabase.getInstance(getApplicationContext());
         categoryId = getIntent().getStringExtra(Constants.KEY_CATEGORY);
         Log.e(">>>>>", "Category Ids ::" + categoryId);
@@ -131,7 +139,9 @@ public class QuizActivity extends AppCompatActivity {
         });
         showQuestion();
     }
-
+    /**
+     * Displays the current question on the screen along with answer options.
+     */
     @SuppressLint("DefaultLocale")
     void showQuestion() {
         QuestionModel questionModel = questionModelList.get(currentQuestionIndex);
@@ -145,7 +155,11 @@ public class QuizActivity extends AppCompatActivity {
         option4.setText(options.get(3));
         showSelectedAnswer(questionModel);
     }
-
+    /**
+     * Displays the previously selected answer for a question.
+     *
+     * @param questionModel The QuestionModel object representing the current question.
+     */
     void showSelectedAnswer(QuestionModel questionModel) {
         if (questionModel.user_selected_option == 0) {
             option1.setChecked(true);
@@ -159,7 +173,9 @@ public class QuizActivity extends AppCompatActivity {
             radioGroup.clearCheck();
         }
     }
-
+    /**
+     * Calculates the user's score based on selected answers and displays it.
+     */
     void calculateScore() {
         for (QuestionModel questionModel : questionModelList) {
             if (questionModel.user_selected_answer.equals(questionModel.correct_answer)) {
@@ -168,7 +184,11 @@ public class QuizActivity extends AppCompatActivity {
         }
         ((TextView) findViewById(R.id.txtTotal)).setText(String.valueOf(score));
     }
-
+    /**
+     * Validates user input before saving the score to the database.
+     *
+     * @return True if the input is valid, false otherwise.
+     */
     private boolean isValid() {
         if (edtName.getText().toString().trim().isEmpty()) {
             Toast.makeText(QuizActivity.this, "Please enter name", Toast.LENGTH_LONG).show();

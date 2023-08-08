@@ -12,9 +12,17 @@ import java.util.List;
 
 import algonquin.cst2335.finalproject.room.ScoreEntity;
 
+/**
+ * Adapter class for displaying a list of score entries in a RecyclerView.
+ */
 public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHolder> {
     private List<ScoreEntity> scoreEntityList;
 
+    /**
+     * Constructs a new ScoreAdapter with the provided list of score entities.
+     *
+     * @param scoreEntityList The list of score entities to display.
+     */
     public ScoreAdapter(List<ScoreEntity> scoreEntityList) {
         this.scoreEntityList = scoreEntityList;
     }
@@ -37,10 +45,18 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
         return scoreEntityList.size();
     }
 
+    /**
+     * ViewHolder class representing a single score entry item in the RecyclerView.
+     */
     class ScoreViewHolder extends RecyclerView.ViewHolder {
         private final TextView txtName;
         private final TextView txtScore;
 
+        /**
+         * Constructs a new ScoreViewHolder with the given itemView.
+         *
+         * @param itemView The view representing a single score entry item.
+         */
         public ScoreViewHolder(@NonNull View itemView) {
             super(itemView);
             txtName = itemView.findViewById(R.id.tvName);
