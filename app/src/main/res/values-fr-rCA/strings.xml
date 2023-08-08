@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Projet final</string>
+    <string name="select_topic_prompt">sujette</string>
+    <string name="select_the_number_of_questions">Numéro de question</string>
+    <string name="enter_the_number_of_questions">Entrez le non. de questions</string>
+    <string name="start_quiz">questionnaire</string>
+    <string name="quiz_download">Télécharger</string>
+    <string name="question">Question</string>
+    <string name="top_10_high_scores">Score élevé</string>
+    <string name="str_next">Suivante</string>
+    <string name="str_previous">Précédente</string>
+    <string name="score">Ton score</string>
+    <string name="finish">Finir</string>
+    <string name="str_enter_name">Entrez votre nom</string>
+    <string name="save">Sauvegarder</string>
+    <string name="str_no_data_found">Aucune donnée disponible</string>
+    <string name="select_a_topic">Select a topic</string>
+</resources>

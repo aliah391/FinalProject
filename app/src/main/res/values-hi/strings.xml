@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">अंतिम परियोजना</string>
+    <string name="select_topic_prompt">प्रश्नोत्तरी विषय चुनें</string>
+    <string name="select_the_number_of_questions">प्रश्न की संख्या</string>
+    <string name="enter_the_number_of_questions">नंबर दर्ज करें. प्रश्नों का</string>
+    <string name="start_quiz">प्रश्नोत्तरी</string>
+    <string name="quiz_download">डाउनलोड करना</string>
+    <string name="question">सवाल</string>
+    <string name="top_10_high_scores">उच्च स्कोर</string>
+    <string name="str_next">अगला</string>
+    <string name="str_previous">पहले का</string>
+    <string name="score">तुम्हारे अंक</string>
+    <string name="finish">खत्म करना</string>
+    <string name="str_enter_name">अपना नाम दर्ज करें</string>
+    <string name="save">बचाना</string>
+    <string name="str_no_data_found">डाटा प्राप्त नहीं हुआ</string>
+    <string name="select_a_topic">Select a topic</string>
+</resources>
