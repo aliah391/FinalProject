@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="app_name">Currency converter</string>
+    <string name="app_name_currency">Currency converter</string>
     <string name="enter_amount">Enter amount…</string>
     <string name="source_currency">Source Currency:</string>
     <string name="destination_currency">Destination Currency:</string>
@@ -71,7 +71,7 @@
     <string name="vnd_description">Vietnamese Dong</string>
 
 
-    <string name="app_name">My Application</string>
+    <string name="app_name_image">My Application</string>
     <string name="describe_image_here">Description of the image</string>
     <string name="save">Save Image</string>
     <string name="bear_image_button">Bear Image Button</string>
@@ -102,7 +102,7 @@
 
     <string name="help_message_saved_images_activity">This is SavedImagesActivity. Here you can view and delete your saved images.</string>
 
-    <string name="app_name">Aviation</string>
+    <string name="app_name_aviation">Aviation</string>
 
     <string name="ediText">Enter airport code</string>
     <string name="name_of_flight">Name of airline</string>

@@ -46,33 +46,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         binding.Currency.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, CurrencyConverter.class);
-            startActivity(intent);
+                    Intent intent = new Intent(MainActivity.this, CurrencyConverter.class);
+                    startActivity(intent);
+                });
 
-
-        Button bearImageButton = findViewById(R.id.Bear_Image);
+        binding.bearImageButton = findViewById(R.id.Bear_Image);
         bearImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Start new NewActivity
                 Intent intent = new Intent(MainActivity.this, NewActivity.class);
                 startActivity(intent);
+            }
+        binding.Trivia.setOnClickListener(click ->{
 
-        binding.Trivia.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,QuizStartActivity.class));
-
-
-
-            ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
-            setContentView(binding.getRoot());
-           // setSupportActionBar(binding.toolbar);
-        binding.Aviation.setOnClickListener(click->{
-          Intent nextPage= new Intent(MainActivity.this, Aviation.class);
-          startActivity(nextPage);
-
-        });
+            }
+            // setSupportActionBar(binding.toolbar);
 
 
         }
@@ -103,14 +92,12 @@ public class MainActivity extends AppCompatActivity {
 //
 //            return true;
 //        }
+//
+//            }
+//
+//        });
+//    }
 
-            }
-
-        });
-    }
-
-
-}
 
 }
 
