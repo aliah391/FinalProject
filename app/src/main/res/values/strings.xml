@@ -26,7 +26,7 @@
     <string name="query">Query</string>
     <string name="results">Results</string>
     <string name="converted_amount">Converted Amount %1$.2f</string>
-    <string name="action_help">Help</string>
+    <string name="action_help_currency">Help</string>
     <string name="help_dialog_title">Help</string>
     <string name="help_dialog_message">
     Welcome to Currency Converter!\n
@@ -71,9 +71,9 @@
     <string name="vnd_description">Vietnamese Dong</string>
 
 
-    <string name="app_name_image">My Application</string>
+    <string name="app_name_bear">My Application</string>
     <string name="describe_image_here">Description of the image</string>
-    <string name="save">Save Image</string>
+    <string name="save_bear">Save Image</string>
     <string name="bear_image_button">Bear Image Button</string>
     <string name="enter_width">Enter Width</string>
     <string name="enter_height">Enter Height</string>
@@ -94,7 +94,7 @@
     <string name="snackbar_saved_images_loaded">Saved images loaded</string>
     <string name="snackbar_message_2">Failed to load image</string>
 
-    <string name="action_help">Help</string>
+    <string name="action_help_bear">Help</string>
     <string name="help_title">Help</string>
     <string name="help_message_image_activity">This is ImageActivity. Here you can view and save images with specified dimensions.</string>
 
@@ -102,7 +102,7 @@
 
     <string name="help_message_saved_images_activity">This is SavedImagesActivity. Here you can view and delete your saved images.</string>
 
-    <string name="app_name_aviation">Aviation</string>
+    <string name="app_name">FinalProject</string>
 
     <string name="ediText">Enter airport code</string>
     <string name="name_of_flight">Name of airline</string>

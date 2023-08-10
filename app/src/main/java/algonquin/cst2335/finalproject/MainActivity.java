@@ -1,18 +1,10 @@
 package algonquin.cst2335.finalproject;
 
-import android.app.Activity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
-
 import androidx.appcompat.app.AppCompatActivity;
-
-import algonquin.cst2335.finalproject.databinding.ActivityMainBinding;
-
-
 import algonquin.cst2335.finalproject.databinding.ActivityMainBinding;
 
 
@@ -41,30 +33,34 @@ public class MainActivity extends AppCompatActivity {
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+      super.onCreate(savedInstanceState);
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         binding.Currency.setOnClickListener(v -> {
-                    Intent intent = new Intent(MainActivity.this, CurrencyConverter.class);
-                    startActivity(intent);
-                });
+            Intent intent = new Intent(MainActivity.this, CurrencyConverter.class);
+            startActivity(intent);
+        });
 
-        binding.bearImageButton = findViewById(R.id.Bear_Image);
+        Button bearImageButton = findViewById(R.id.Bear_Image);
         bearImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Start new NewActivity
                 Intent intent = new Intent(MainActivity.this, NewActivity.class);
                 startActivity(intent);
             }
-        binding.Trivia.setOnClickListener(click ->{
+        });
 
-            }
-            // setSupportActionBar(binding.toolbar);
+        binding.Trivia.setOnClickListener(v -> {
+            startActivity(new Intent(MainActivity.this, QuizStartActivity.class));
+        });
 
-
-        }
+        binding.Aviation.setOnClickListener(click -> {
+            Intent nextPage = new Intent(MainActivity.this, Aviation.class);
+            startActivity(nextPage);
+        });
+    }
+}
 //
 //        @Override
 //        public boolean onCreateOptionsMenu(Menu menu) {
@@ -92,12 +88,3 @@ public class MainActivity extends AppCompatActivity {
 //
 //            return true;
 //        }
-//
-//            }
-//
-//        });
-//    }
-
-
-}
-

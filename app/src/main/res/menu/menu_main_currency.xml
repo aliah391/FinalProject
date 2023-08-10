@@ -4,7 +4,7 @@
     <item
         android:icon="@drawable/help"
         android:id="@+id/action_help"
-        android:title="@string/action_help"
+        android:title="@string/action_help_currency"
         android:orderInCategory="100"
         app:showAsAction="always" />
 

@@ -2,6 +2,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_help"
-        android:title="@string/action_help"
+        android:title="@string/action_help_bear"
         app:showAsAction="never"/>
 </menu>
