@@ -71,7 +71,7 @@
     <string name="vnd_description">Vietnamese Dong</string>
 
 
-    <string name="app_name_bear">My Application</string>
+    <string name="app_name_bear">Bear Image Generator</string>
     <string name="describe_image_here">Description of the image</string>
     <string name="save_bear">Save Image</string>
     <string name="bear_image_button">Bear Image Button</string>
