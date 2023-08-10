@@ -40,7 +40,7 @@ public class NameOfflight {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name="id")
     public long id;
-
+public NameOfflight(){}
     /**
      * Constructor accepts the name of flight
      * @param nof is the name of flight
